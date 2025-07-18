@@ -34,4 +34,19 @@ body {
   transform-style: preserve-3d;
 }
 
+.padding-x {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.title{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.text-normal {
+  font-weight: normal;
+  font-size: 1.125rem;
+}
+
 

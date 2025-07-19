@@ -2,12 +2,8 @@ import React from "react";
 import HeroHeadline from "@/components/ui/hero-headline";
 import CardProject from "@/components/ui/card-project";
 import Skill from "@/components/ui/skill";
-import { Montserrat, Roboto_Flex, Anton } from "next/font/google";
-
-const montserrat = Montserrat({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
+import { Roboto_Flex, Anton } from "next/font/google";
+import { Mail, Linkedin } from "lucide-react";
 
 const robotoFlex = Roboto_Flex({
   weight: ["400", "700"],
@@ -52,7 +48,7 @@ export default function Home() {
         {/* Progetti */}
         <section className="flex items-center justify-center h-screen w-auto padding-x">
           <div className="flex-col items-center justify-center">
-            <div className="title font-extrabold mb-8 text-start">
+            <div className="title mb-8 text-start">
               Projects that shape ideas into reality
             </div>
             <div className="flex flex-row items-center justify-center gap-6 mb-8">
@@ -82,26 +78,178 @@ export default function Home() {
         </section>
 
         {/* Competenze */}
-        <section className="flex items-center justify-center h-screen w-auto padding-x">
-          <div className="flex-col items-center justify-center padding-x">
-            <div className="padding-x">Competenze</div>
-            <Skill />
+        <section className="flex items-center justify-evenly h-screen w-auto padding-x">
+          <div className="flex flex-col items-start justify-center gap-10">
+            <div className="title">Skills</div>
+                <div className="flex flex-row items-start justify-around gap-6 mb-4 w-full">
+                  <div className={`w-1/2 ${anton.className} text-4xl`}>Frontend</div>
+                  <div className="flex flex-wrap gap-4 w-1/2">
+                    <div
+                      className={`flex flex-row items-center justify-center gap-6 text-2xl`}
+                    >
+                      <img
+                        src="/images/skill/js.png"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                      Javascript
+                    </div>
+                    <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                      <img
+                        src="/images/skill/typescript.png"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                      Typescript
+                    </div>
+                    <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                      <img
+                        src="/images/skill/react.png"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                      React
+                    </div>
+                    <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                      <img
+                        src="/images/skill/nextjs.png"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                      Next.js
+                    </div>
+                    <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                      <img
+                        src="/images/skill/tailwind.png"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                      Tailwind
+                    </div>
+                    <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                      <img
+                        src="/images/skill/gsap.png"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                      GSAP
+                    </div>
+                  </div>
+                </div>
+
+              <div className="flex flex-row items-start justify-between gap-6 mb-4 w-full">
+                <div className={`w-1/2 ${anton.className} text-4xl`}>Backend</div>
+                <div className="flex flex-wrap gap-4 w-1/2">
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/node-js.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    Node.js
+                  </div>
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/express-js.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    Express.js
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-row items-start justify-between gap-6 mb-4 w-full">
+                <div className={`w-1/2 ${anton.className} text-4xl`}>Database</div>
+                <div className="flex flex-wrap gap-4 w-1/2">
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/mongodb.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    MongoDB
+                  </div>
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/mysql.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    MySQL
+                  </div>
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/postgresql.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    PostgreSQL
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-row items-start justify-between gap-6 mb-4 w-full">
+                <div className={`w-1/2 ${anton.className} text-4xl`}>Tools</div>
+                <div className="flex flex-wrap gap-4 w-1/2">
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/git.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    Git
+                  </div>
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/docker.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    Docker
+                  </div>
+                  <div className="flex flex-row items-center justify-center gap-6 text-2xl">
+                    <img
+                      src="/images/skill/firebase.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    Firebase
+                  </div>
+                </div>
+              </div>
+              <div className={`w-1/2 ${anton.className} text-4xl`}>And more...</div>
           </div>
         </section>
 
         {/* Contatti */}
-        <section>
-          <div className="padding-x">
-            <div>Contattami</div>
-            <div className="flex flex-row items-center justify-between text-center">
-              <div>
-                <a href="https://www.linkedin.com/in/tommaso-d-este-a1596517b/">
-                  LINKEDIN
-                </a>
+        <section className="flex flex-col items-center justify-center h-screen w-auto padding-x">
+          <div className="flex flex-col items-center justify-center gap-6">
+            <div className="title">Get in touch</div>
+            <div className="flex flex-col items-center justify-between text-center gap-3">
+              <div className={`${anton.className} text-4xl`}>
+                <a href="mailto:tommaso.deste.ve@gmail.com">tommaso.deste.ve@gmail.com</a>
               </div>
-              <div className="text-2xl mb-2">Tommaso D'Este</div>
+              <div className="flex flex-row items-center justify-center gap-6">
               <div>
-                <a href="mailto:tommaso.deste.ve@gmail.com">MAIL</a>
+                <a href="https://www.linkedin.com/in/tommaso-d-este-a1596517b/">LinkedIn</a>
+              </div>
+              <div>
+                <a href="https://github.com/DEsteTommaso">Github</a>
+              </div>
               </div>
             </div>
           </div>

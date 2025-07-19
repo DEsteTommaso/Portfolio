@@ -1,4 +1,10 @@
 import React from "react";
+import {Roboto_Flex, Anton } from "next/font/google";
+
+const robotoFlex = Roboto_Flex({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 export default function Skill() {
   return (
@@ -7,8 +13,8 @@ export default function Skill() {
         <div className="flex flex-row items-center justify-between gap-6 mb-4 ">
           <div className="w-1/2">Frontend</div>
           <div className="flex flex-wrap gap-4 w-1/2">
-            <div className="flex flex-row items-center justify-center gap-6">
-              <img src="/images/skill/js.png" alt="" width={50} height={50} />
+            <div className={`flex flex-row items-center justify-center gap-6`}>
+              <img src="/images/skill/js.png" alt="" width={50} height={50}/>
               javascript
             </div>
             <div className="flex flex-row items-center justify-center gap-6">

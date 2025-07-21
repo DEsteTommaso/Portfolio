@@ -21,7 +21,7 @@ export default function Home() {
   const skillsRef = useRef(null);
   const fadeOutSkillsRef = useRef(null);
   const fadeInProjectsRef = useRef(null);
-  const fadeOutProjectsRef = useRef(null);
+  const scaleHoverProjectsRef = useRef(null);
   const projectsRef = useRef(null);
   const heroRef = useRef(null);
 
@@ -31,7 +31,6 @@ export default function Home() {
       skillsRef,
       fadeOutSkillsRef,
       fadeInProjectsRef,
-      fadeOutProjectsRef,
       projectsRef,
       heroRef
     );
@@ -59,22 +58,22 @@ export default function Home() {
           ref={whoAmIRef}
         >
           <div
-            className={`text-5xl font-bold mb-8 animate-fade-scrolldown  ${anton.className}`}
+            className={`super-title mb-8 animate-fade-scrolldown  ${anton.className}`}
           >
             Building digital experiences, one line of code at a time.
           </div>
           <div className="flex flex-row items-start justify-center text-start">
-            <div className="title mb-4 w-1/2 animate-fade-scrolldown">
+            <div className="colorful-text mb-4 w-1/2 animate-fade-scrolldown">
               WHO AM I?
             </div>
             <div className="w-1/2">
-              <div className="mb-4 leading-relaxed animate-fade-scrolldown">
+              <div className="mb-4 leading-relaxed animate-fade-scrolldown text-normal">
                 I am Tommaso D'Este, a dedicated software engineer with a strong
                 focus on web development. My commitment to excellence ensures
                 that I consistently deliver robust, scalable, and high-quality
                 web solutions tailored to client requirements.
               </div>
-              <div className="mb-4 leading-relaxed animate-fade-scrolldown">
+              <div className="mb-4 leading-relaxed animate-fade-scrolldown text-normal">
                 With a results-driven approach, I strive to exceed expectations
                 and bring every project to successful completion. My expertise
                 spans the full stack, allowing me to transform concepts into
@@ -90,15 +89,15 @@ export default function Home() {
           ref={fadeOutSkillsRef}
         >
           <div
-            className="flex flex-col items-start justify-center gap-10"
+            className="flex flex-col items-start justify-center gap-18"
             ref={skillsRef}
           >
-            <div className="title animate-skill">SKILLS</div>
+            <div className="colorful-text animate-skill">SKILLS</div>
             <div className="flex flex-row items-start justify-around gap-6 mb-4 w-full">
               <div
-                className={`w-1/2 ${anton.className} text-4xl animate-skill`}
+                className={`w-1/2 ${anton.className} super-title animate-skill`}
               >
-                Frontend
+                FRONTEND
               </div>
               <div className="flex flex-wrap gap-4 w-1/2">
                 <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
@@ -160,9 +159,9 @@ export default function Home() {
 
             <div className="flex flex-row items-start justify-between gap-6 mb-4 w-full">
               <div
-                className={`w-1/2 ${anton.className} text-4xl animate-skill`}
+                className={`w-1/2 ${anton.className} super-title animate-skill`}
               >
-                Backend
+                BACKEND
               </div>
               <div className="flex flex-wrap gap-4 w-1/2">
                 <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
@@ -188,9 +187,9 @@ export default function Home() {
 
             <div className="flex flex-row items-start justify-between gap-6 mb-4 w-full">
               <div
-                className={`w-1/2 ${anton.className} text-4xl animate-skill`}
+                className={`w-1/2 ${anton.className} super-title animate-skill`}
               >
-                Database
+                DATABASE
               </div>
               <div className="flex flex-wrap gap-4 w-1/2">
                 <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
@@ -224,9 +223,9 @@ export default function Home() {
             </div>
             <div className="flex flex-row items-start justify-between gap-6 mb-4 w-full">
               <div
-                className={`w-1/2 ${anton.className} text-4xl animate-skill`}
+                className={`w-1/2 ${anton.className} super-title animate-skill`}
               >
-                Tools
+                TOOLS
               </div>
               <div className="flex flex-wrap gap-4 w-1/2">
                 <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
@@ -270,7 +269,7 @@ export default function Home() {
             className="flex-col items-center justify-center"
             ref={projectsRef}
           >
-            <div className="title mb-8 text-start ">
+            <div className="colorful-text mb-8 text-start ">
               PROJECTS THAT BRING IDEAS TO LIFE
             </div>
             <div className="flex flex-row items-center justify-center gap-6 mb-8">
@@ -306,7 +305,7 @@ export default function Home() {
         {/* Contatti */}
         <section className="flex flex-col items-center justify-center w-auto padding-x pb-10">
           <div className="flex flex-col items-center justify-center gap-6">
-            <div className="title">GET IN TOUCH</div>
+            <div className="colorful-text">GET IN TOUCH</div>
             <div className="flex flex-col items-center justify-between text-center gap-3">
               <div className={`${anton.className} text-4xl`}>
                 <a href="mailto:tommaso.deste.ve@gmail.com">

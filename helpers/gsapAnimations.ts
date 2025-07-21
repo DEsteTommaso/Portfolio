@@ -1,3 +1,4 @@
+import { scale } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -8,7 +9,6 @@ export function setupGsapAnimations(
   skillsRef: React.RefObject<HTMLDivElement>,
   fadeOutSkillsRef: React.RefObject<HTMLDivElement>,
   fadeInProjectsRef: React.RefObject<HTMLDivElement>,
-  fadeOutProjectsRef: React.RefObject<HTMLDivElement>,
   projectsRef: React.RefObject<HTMLDivElement>,
   heroRef: React.RefObject<HTMLDivElement>
 ) {
@@ -45,7 +45,7 @@ export function setupGsapAnimations(
         scrollTrigger: {
           trigger: skillsRef.current,
           start: "top 80%",
-          end: "top 0%",
+          end: "top top",
           scrub: true,
         },
       }
@@ -84,24 +84,6 @@ export function setupGsapAnimations(
           trigger: fadeInProjectsRef.current,
           start: "top 60%",
           end: "top 20%",
-          scrub: true,
-        },
-      }
-    );
-  }
-  if (fadeOutProjectsRef.current) {
-    gsap.fromTo(
-      fadeOutProjectsRef.current,
-      { opacity: 1, y: 0 },
-      {
-        opacity: 0,
-        duration: 1,
-        y: -200,
-        ease: "power2.in",
-        scrollTrigger: {
-          trigger: fadeOutProjectsRef.current,
-          start: "top 60%",
-          end: "bottom 20%",
           scrub: true,
         },
       }

@@ -39,7 +39,7 @@ body {
   padding-right: 20%;
 }
 
-.title {
+.colorful-text {
   font-size: 1.25rem;
   margin-bottom: 5%;
   background: linear-gradient(
@@ -61,13 +61,66 @@ body {
 @keyframes title-gradient-move {
   /* da 0% a 100% scorri di due interi “viewport” di gradiente */
   0%   { background-position:   0% 50%; }
-  100% { background-position: 200% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+.super-title {
+    font-size: 3rem; /* 48px */
+    line-height: 1.2;
+    font-weight: bold;
 }
 
 
 .text-normal {
   font-weight: normal;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
 }
+/* mantiene tutto il resto identico */
+
+.card-animated-border {
+  position: relative;      /* serve per il ::before */
+  overflow: hidden;        /* per contenere il bordo */
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  transition: transform 0.3s; /* mantieni solo quello che ti serve */
+}
+
+/* il bordo “gradient” è in un before invisibile di default */
+.card-animated-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;                /* 0 su tutti i lati */
+  padding: 2px;            /* spessore del bordo */
+  border-radius: inherit;  /* stesso raggio del genitore */
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #3b82f6,
+    #a78bfa,
+    #3b82f6,
+    #ffffff
+  );
+  background-size: 300% 300%;
+  z-index: -1;             /* sotto il contenuto */
+  opacity: 0;              /* nascosto */
+  transition: opacity 0.5s ease-in-out;  /* qui aggiungi la dolcezza */
+  pointer-events: none;
+}
+
+/* al hover sul wrapper, alziamo l’opacità e partiamo col movimento */
+.card-animated-border:hover::before {
+  opacity: 1;
+  animation: borderGradientMove 3s ease-in-out infinite;
+}
+
+
+@keyframes borderGradientMove {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+
 
 

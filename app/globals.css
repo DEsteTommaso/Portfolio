@@ -39,11 +39,31 @@ body {
   padding-right: 20%;
 }
 
-.title{
+.title {
   font-size: 1.25rem;
-  font-weight: semibold;
   margin-bottom: 5%;
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #3b82f6,
+    #a78bfa,
+    #3b82f6,
+    #ffffff
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: title-gradient-move 6s linear infinite;
 }
+
+@keyframes title-gradient-move {
+  /* da 0% a 100% scorri di due interi “viewport” di gradiente */
+  0%   { background-position:   0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
 
 .text-normal {
   font-weight: normal;

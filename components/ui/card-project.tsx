@@ -53,7 +53,7 @@ export default function CardProject({
 
   return (
     <div
-      className={`card-animated-border relative w-full max-w-xs h-[300px] overflow-hidden p-[2px] ${className} `}
+      className={`card-animated-border relative w-full max-w-xs h-[250px] sm:h-[370px] overflow-hidden p-[2px] ${className} `}
       style={{ zIndex: 0 }}
       ref={cardRef}
     >

@@ -1,16 +1,16 @@
-import { scale } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function setupGsapAnimations(
-  whoAmIRef: React.RefObject<HTMLDivElement>,
-  skillsRef: React.RefObject<HTMLDivElement>,
-  fadeOutSkillsRef: React.RefObject<HTMLDivElement>,
-  fadeInProjectsRef: React.RefObject<HTMLDivElement>,
-  projectsRef: React.RefObject<HTMLDivElement>,
-  heroRef: React.RefObject<HTMLDivElement>
+  whoAmIRef: React.RefObject<HTMLDivElement | null>,
+  skillsRef: React.RefObject<HTMLDivElement | null>,
+  fadeOutSkillsRef: React.RefObject<HTMLDivElement | null>,
+  fadeInProjectsRef: React.RefObject<HTMLDivElement | null>,
+  projectsRef: React.RefObject<HTMLDivElement | null>,
+  heroRef: React.RefObject<HTMLDivElement | null>,
+  scroller: HTMLElement
 ) {
   if (!whoAmIRef.current) return;
 
@@ -22,6 +22,7 @@ export function setupGsapAnimations(
         start: "top 90%",
         end: "top 00%",
         scrub: true,
+        scroller: scroller,
       },
     });
     tl.fromTo(
@@ -33,21 +34,23 @@ export function setupGsapAnimations(
 
   if (skillsRef.current) {
     const skillElements = skillsRef.current.querySelectorAll(".animate-skill");
+    const isTabletOrSmaller = window.innerWidth <= 1024;
     gsap.fromTo(
       skillElements,
       { opacity: 0, y: 50 },
       {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power2.out",
-        stagger: 0.4,
-        scrollTrigger: {
-          trigger: skillsRef.current,
-          start: "top 80%",
-          end: "top top",
-          scrub: true,
-        },
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: "power2.out",
+      stagger: 0.4,
+      scrollTrigger: {
+        trigger: skillsRef.current,
+        start: isTabletOrSmaller ? "top 60%" : "top 80%",
+        end: isTabletOrSmaller ? "bottom bottom" : "top top",
+        scrub: true,
+        scroller: scroller,
+      },
       }
     );
   }
@@ -66,12 +69,14 @@ export function setupGsapAnimations(
           start: "top 60%",
           end: "bottom 20%",
           scrub: true,
+          scroller: scroller,
         },
       }
     );
   }
   
   if (fadeInProjectsRef.current) {
+    const isPhoneOrSmaller = window.innerWidth <= 767;
     gsap.fromTo(
       fadeInProjectsRef.current,
       { opacity: 0, y: 50 },
@@ -82,15 +87,18 @@ export function setupGsapAnimations(
         ease: "power2.out",
         scrollTrigger: {
           trigger: fadeInProjectsRef.current,
-          start: "top 60%",
-          end: "top 20%",
+          start: isPhoneOrSmaller ? "top bottom" : "top 60%", // Inizia quando il contenitore entra nella viewport dal basso
+          end: isPhoneOrSmaller ? "center 50%" : "top 20%", // Finisce quando il fondo del contenitore raggiunge il 70% dell'altezza dello schermo
           scrub: true,
+          scroller: scroller,
         },
       }
     );
   }
   if (projectsRef.current) {
     const cards = projectsRef.current.querySelectorAll(".project-card");
+    const isPhoneOrSmaller = window.innerWidth <= 767;
+    
     gsap.fromTo(
       cards,
       { opacity: 0, scale: 0.5, y: 40 },
@@ -100,12 +108,13 @@ export function setupGsapAnimations(
         y: 0,
         duration: 0.7,
         ease: "power2.in",
-        stagger: 0.5,
+        stagger: isPhoneOrSmaller ? 0.3 : 0.5, // Stagger ridotto per mobile
         scrollTrigger: {
           trigger: projectsRef.current,
-          start: "top 80%",
-          end: "top 40%",
-          scrub: true,
+          start: isPhoneOrSmaller ? "top bottom" : "top 80%", // Anticipiamo ancora di più l'animazione
+          end: isPhoneOrSmaller ? "center 50%" : "top 40%", // Modifichiamo anche l'end point su mobile
+          scrub: true, 
+          scroller: scroller,
         },
       }
     );
@@ -121,7 +130,7 @@ export function setupGsapAnimations(
         ease: "power2.out",
         scrollTrigger: {
           trigger: heroRef.current,
-          start: "top top",
+          start: "center center",
           end: "+=100%", // Modifica qui: usa una percentuale fissa invece di "bottom top"
           scrub: true,
           pin: true,

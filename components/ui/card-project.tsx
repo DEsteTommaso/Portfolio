@@ -8,9 +8,11 @@ interface CardProjectProps {
   title: string;
   description: string;
   link: string;
-  className?: string; // aggiungi questa riga
+  className?: string; 
 }
 
+// CardProject displays a project card with title, description, and a link.
+// It animates the card scale on mouse enter/leave using GSAP.
 export default function CardProject({
   title,
   description,
@@ -18,13 +20,14 @@ export default function CardProject({
   className = "",
 }: CardProjectProps) {
 
+  // Ref for the card DOM element to apply GSAP animations
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
 
-    // mouse enter → scala a 1.05
+    // Scale up the card slightly on mouse enter
     const onEnter = () => {
       gsap.to(el, {
         scale: 1.05,
@@ -33,7 +36,7 @@ export default function CardProject({
       });
     };
 
-    // mouse leave → scala indietro a 1
+    // Scale back to normal on mouse leave
     const onLeave = () => {
       gsap.to(el, {
         scale: 1,
@@ -45,6 +48,7 @@ export default function CardProject({
     el.addEventListener("mouseenter", onEnter);
     el.addEventListener("mouseleave", onLeave);
 
+    // Cleanup event listeners on unmount
     return () => {
       el.removeEventListener("mouseenter", onEnter);
       el.removeEventListener("mouseleave", onLeave);
@@ -53,17 +57,20 @@ export default function CardProject({
 
   return (
     <div
+      // Main card container with animated border and GSAP ref
       className={`card-animated-border relative w-full max-w-xs h-[250px] sm:h-[370px] overflow-hidden p-[2px] ${className} `}
       style={{ zIndex: 0 }}
       ref={cardRef}
     >
       <div className="flex flex-col items-start justify-between text-left p-6 bg-[#1a1a1a] rounded-xl w-full h-full shadow-lg">
         <div>
+          {/* Project title and description */}
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
             {title}
           </h3>
           <p className="text-white/70 mb-4 leading-snug">{description}</p>
         </div>
+        {/* Link to project, disabled if link is empty */}
         <a
           href={link || undefined}
           target="_blank"

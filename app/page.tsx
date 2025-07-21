@@ -7,6 +7,7 @@ import { setupGsapAnimations } from "@/helpers/gsapAnimations";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import ScrollBar from "smooth-scrollbar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Skill from "@/components/ui/skill";
 
 const robotoFlex = Roboto_Flex({
   weight: ["400", "700"],
@@ -137,194 +138,22 @@ export default function Home() {
             className="flex items-center justify-evenly h-screen w-auto padding-x mb-[50vh] lg:mb-0"
             ref={fadeOutSkillsRef}
           >
-            <div
-              className="flex flex-col items-start justify-center lg:gap-18 gap-10"
-              ref={skillsRef}
-            >
-              <div className="colorful-text animate-skill">SKILLS</div>
-              <div className="flex flex-col sm:flex-row items-start justify-around gap-6 mb-4 w-full">
-                <div
-                  className={`w-1/2 ${anton.className} super-title animate-skill`}
-                >
-                  FRONTEND
-                </div>
-                <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/js.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Javascript
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/typescript.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Typescript
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/react.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    React
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/nextjs.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Next.js
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/tailwind.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Tailwind
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/gsap.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    GSAP
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-4 w-full">
-                <div
-                  className={`w-1/2 ${anton.className} super-title animate-skill`}
-                >
-                  BACKEND
-                </div>
-                <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/node-js.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Node.js
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/express-js.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Express.js
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-4 w-full">
-                <div
-                  className={`w-1/2 ${anton.className} super-title animate-skill`}
-                >
-                  DATABASE
-                </div>
-                <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/mongodb.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    MongoDB
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/mysql.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    MySQL
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/postgresql.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    PostgreSQL
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-4 w-full">
-                <div
-                  className={`w-1/2 ${anton.className} super-title animate-skill`}
-                >
-                  TOOLS
-                </div>
-                <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/git.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Git
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/docker.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Docker
-                  </div>
-                  <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-                    <img
-                      src="/images/skill/firebase.png"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                    Firebase
-                  </div>
-                </div>
-              </div>
-              <div className={`w-1/2 ${anton.className} text-4xl animate-skill`}>
-                And more...
-              </div>
-            </div>
+            <Skill skillsRef={skillsRef} />
           </section>
 
           {/* Progetti */}
           <section
-            className="flex items-center justify-center h-screen w-auto padding-x pt-[50vh] sm:pt-0"
+            className="flex items-center justify-center h-screen w-full padding-x pt-[50vh] sm:pt-0"
             ref={fadeInProjectsRef}
           >
             <div
-              className="flex-col items-center justify-center"
+              className="flex-col items-start justify-center w-full"
               ref={projectsRef}
             >
               <div className="colorful-text mb-8 text-start ">
                 PROJECTS THAT BRING IDEAS TO LIFE
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 mb-8 justify-items-center items-center">
                 {/* Elenco dei progetti */}
                 <CardProject
                   title="Little Heroes"
@@ -355,7 +184,7 @@ export default function Home() {
           </section>
 
           {/* Contatti */}
-          <section className="flex flex-col items-center justify-center w-auto padding-x pb-10 pt-[70vh] sm:pt-0">
+          <section className="flex flex-col items-center justify-center w-auto padding-x pb-10 pt-[70vh] md:pt-[20vh] 2xl:pt-0">
             <div className="flex flex-col items-center justify-center gap-6">
               <div className="colorful-text">GET IN TOUCH</div>
               <div className="flex flex-col items-center justify-between text-center gap-3">

@@ -145,7 +145,19 @@ html, body {
 /*For smooth scrolling*/
 #scroll-container {
   height: 100%;
-  overflow: hidden; 
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Disabilita esplicitamente lo scrolling orizzontale */
+.scrollbar-track.scrollbar-track-x {
+  display: none !important;
+}
+
+/* Aggiunge un overflow nascosto sui contenitori che potrebbero causare scroll orizzontale */
+section {
+  overflow-x: hidden !important;
+  max-width: 100vw;
 }
 
 

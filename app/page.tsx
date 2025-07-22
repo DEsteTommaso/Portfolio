@@ -35,8 +35,20 @@ export default function Home() {
       damping: 0.05,
       thumbMinSize: 20,
       renderByPixels: true,
+      alwaysShowTracks: false,
+      plugins: {
+        overscroll: false
+      },
     });
 
+    // Disabilita esplicitamente lo scroll orizzontale
+    scrollbar.track.xAxis.element.remove(); // Rimuove fisicamente la barra di scorrimento orizzontale
+    
+    // Inoltre, blocca il movimento orizzontale
+    scrollbar.addListener((status) => {
+      scrollbar.setPosition(0, status.offset.y); // Resetta sempre la posizione X a 0
+    });
+    
     // Configurazione del proxy per ScrollTrigger
     ScrollTrigger.scrollerProxy(scrollEl, {
       scrollTop(value?: number) {

@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import { Anton } from "next/font/google";
+import Image from "next/image";
 
 // Load Anton Google font with weight 400 and latin subset
 const anton = Anton({
@@ -33,37 +34,37 @@ const Skill = forwardRef<HTMLDivElement, SkillProps>(({ className = '' }, ref) =
         {/* List of frontend skills with icons */}
         <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img src="/images/skill/js.png" alt="" width={40} height={40} />
+            <Image src="/images/skill/js.png" alt="JavaScript logo" width={40} height={40} />
             Javascript
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img
+            <Image
               src="/images/skill/typescript.png"
-              alt=""
+              alt="TypeScript logo"
               width={40}
               height={40}
             />
             Typescript
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img src="/images/skill/react.png" alt="" width={40} height={40} />
+            <Image src="/images/skill/react.png" alt="React logo" width={40} height={40} />
             React
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img src="/images/skill/nextjs.png" alt="" width={40} height={40} />
+            <Image src="/images/skill/nextjs.png" alt="Next.js logo" width={40} height={40} />
             Next.js
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img
+            <Image
               src="/images/skill/tailwind.png"
-              alt=""
+              alt="Tailwind CSS logo"
               width={40}
               height={40}
             />
             Tailwind
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img src="/images/skill/gsap.png" alt="" width={40} height={40} />
+            <Image src="/images/skill/gsap.png" alt="GSAP logo" width={40} height={40} />
             GSAP
           </div>
         </div>
@@ -76,18 +77,18 @@ const Skill = forwardRef<HTMLDivElement, SkillProps>(({ className = '' }, ref) =
         </div>
         <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img
+            <Image
               src="/images/skill/node-js.png"
-              alt=""
+              alt="Node.js logo"
               width={40}
               height={40}
             />
             Node.js
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img
+            <Image
               src="/images/skill/express-js.png"
-              alt=""
+              alt="Express.js logo"
               width={40}
               height={40}
             />
@@ -103,22 +104,22 @@ const Skill = forwardRef<HTMLDivElement, SkillProps>(({ className = '' }, ref) =
         </div>
         <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img
+            <Image
               src="/images/skill/mongodb.png"
-              alt=""
+              alt="MongoDB logo"
               width={40}
               height={40}
             />
             MongoDB
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img src="/images/skill/mysql.png" alt="" width={40} height={40} />
+            <Image src="/images/skill/mysql.png" alt="MySQL logo" width={40} height={40} />
             MySQL
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img
+            <Image
               src="/images/skill/postgresql.png"
-              alt=""
+              alt="PostgreSQL logo"
               width={40}
               height={40}
             />
@@ -134,17 +135,17 @@ const Skill = forwardRef<HTMLDivElement, SkillProps>(({ className = '' }, ref) =
         </div>
         <div className="flex flex-wrap gap-4 w-auto sm:w-1/2">
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img src="/images/skill/git.png" alt="" width={40} height={40} />
+            <Image src="/images/skill/git.png" alt="Git logo" width={40} height={40} />
             Git
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img src="/images/skill/docker.png" alt="" width={40} height={40} />
+            <Image src="/images/skill/docker.png" alt="Docker logo" width={40} height={40} />
             Docker
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-2xl animate-skill">
-            <img
+            <Image
               src="/images/skill/firebase.png"
-              alt=""
+              alt="Firebase logo"
               width={40}
               height={40}
             />

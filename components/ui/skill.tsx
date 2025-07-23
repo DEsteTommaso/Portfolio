@@ -1,21 +1,27 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Anton } from "next/font/google";
 
 // Load Anton Google font with weight 400 and latin subset
 const anton = Anton({
   weight: ["400"],
   subsets: ["latin"],
-});
+}); 
 
 // Skill component displays categorized skills with icons and titles
-export default function Skill({ skillsRef }) {
+interface SkillProps {
+  // Puoi aggiungere proprietà in futuro se necessario
+  className?: string;
+}
+
+// Utilizziamo forwardRef per permettere al componente di ricevere un ref esterno
+const Skill = forwardRef<HTMLDivElement, SkillProps>(({ className = '' }, ref) => {
   return (
-    // Main container for the skills section, receives a ref for scrolling/animation
+    // Il ref viene applicato qui al contenitore principale
     <div
-      className="flex flex-col items-start justify-center lg:gap-18 gap-10"
-      ref={skillsRef}
+      className={`flex flex-col items-start justify-center lg:gap-18 gap-10 ${className}`}
+      ref={ref}
     >
-      {/* Section title */}
+      {/* Resto del componente invariato */}
       <div className="colorful-text animate-skill">SKILLS</div>
 
       {/* FRONTEND skills group */}
@@ -153,4 +159,10 @@ export default function Skill({ skillsRef }) {
       </div>
     </div>
   );
-}
+});
+
+// Aggiungi un displayName al componente
+Skill.displayName = "Skill";
+
+export default Skill;
+

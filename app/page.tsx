@@ -94,7 +94,7 @@ export default function Home() {
     };
   }, []);
 
-  return (
+return (
     <>
       <BackgroundBeams />
       <div
@@ -102,21 +102,17 @@ export default function Home() {
         className={`${robotoFlex.className} h-screen overflow-x-hidden z-10`}
       >
         <main className="py-4 text-normal">
-          {/*Aggiungere loading page con nome e cognome*/}
           {/* Hero section */}
           <section
-            className="flex items-center justify-center h-screen w-auto"
+            className="section-spacing flex items-center justify-center h-screen w-auto"
             ref={heroRef}
           >
-            {/* fare effetto scroll, che le parole compaiono mentre vado giù */}
             <HeroHeadline />
           </section>
 
-          <section className="h-[50vh]"></section>
-
-          {/* Chi sono (metto immagine a sx e scrollando verso il basso faccio che il testo compare*/}
+          {/* Chi sono */}
           <section
-            className="flex flex-col items-start justify-center h-screen w-auto padding-x mb-[50vh] lg:mb-0"
+            className="section-spacing flex flex-col items-start justify-center h-auto w-auto padding-x lg:mb-0"
             ref={whoAmIRef}
           >
             <div
@@ -130,16 +126,16 @@ export default function Home() {
               </div>
               <div className="w-auto sm:w-1/2">
                 <div className="mb-4 leading-relaxed animate-fade-scrolldown text-normal">
-                  I am Tommaso D'Este, a dedicated software engineer with a strong
-                  focus on web development. My commitment to excellence ensures
-                  that I consistently deliver robust, scalable, and high-quality
-                  web solutions tailored to client requirements.
+                  I am Tommaso D&apos;Este, a dedicated software engineer with a
+                  strong focus on web development. My commitment to excellence
+                  ensures that I consistently deliver robust, scalable, and
+                  high-quality web solutions tailored to client requirements.
                 </div>
                 <div className="mb-4 leading-relaxed animate-fade-scrolldown text-normal">
-                  With a results-driven approach, I strive to exceed expectations
-                  and bring every project to successful completion. My expertise
-                  spans the full stack, allowing me to transform concepts into
-                  effective and engaging digital experiences.
+                  With a results-driven approach, I strive to exceed
+                  expectations and bring every project to successful completion.
+                  My expertise spans the full stack, allowing me to transform
+                  concepts into effective and engaging digital experiences.
                 </div>
               </div>
             </div>
@@ -147,15 +143,15 @@ export default function Home() {
 
           {/* Competenze */}
           <section
-            className="flex items-center justify-evenly h-screen w-auto padding-x mb-[50vh] lg:mb-0"
+            className="section-spacing flex items-center justify-evenly h-auto w-auto padding-x lg:mb-0"
             ref={fadeOutSkillsRef}
           >
-            <Skill skillsRef={skillsRef} />
+            <Skill ref={skillsRef} />
           </section>
 
           {/* Progetti */}
           <section
-            className="flex items-center justify-center h-screen w-full padding-x pt-[50vh] sm:pt-0"
+            className="section-spacing flex items-center justify-center h-auto w-full padding-x"
             ref={fadeInProjectsRef}
           >
             <div
@@ -196,11 +192,15 @@ export default function Home() {
           </section>
 
           {/* Contatti */}
-          <section className="flex flex-col items-center justify-center w-auto padding-x pb-10 pt-[70vh] md:pt-[20vh] 2xl:pt-0">
+          <section className="section-spacing flex flex-col items-center justify-center h-auto w-auto padding-x pb-10">
             <div className="flex flex-col items-center justify-center gap-6">
               <div className="colorful-text">GET IN TOUCH</div>
               <div className="flex flex-col items-center justify-between text-center gap-3">
-                <div className={`${anton.className} text-2xl sm:super-title`}>
+                {/*
+                  Mostra il super title solo su desktop (lg e oltre).
+                  Usa hidden su mobile/tablet, block su desktop.
+                */}
+                <div className={`${anton.className} text-2xl md:text-[3rem]`}>
                   <a href="mailto:tommaso.deste.ve@gmail.com">
                     tommaso.deste.ve@gmail.com
                   </a>

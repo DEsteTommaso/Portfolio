@@ -1,3 +1,4 @@
+gsap
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -112,7 +113,7 @@ export function setupGsapAnimations(
         scrollTrigger: {
           trigger: projectsRef.current,
           start: isPhoneOrSmaller ? "top bottom" : "top 80%", // Anticipiamo ancora di più l'animazione
-          end: isPhoneOrSmaller ? "center 50%" : "top 40%", // Modifichiamo anche l'end point su mobile
+          end: isPhoneOrSmaller ? "center 60%" : "top 40%", // Modifichiamo anche l'end point su mobile
           scrub: true, 
           scroller: scroller,
         },
@@ -123,7 +124,7 @@ export function setupGsapAnimations(
   if (heroRef.current) {
     gsap.fromTo(
       heroRef.current,
-      { opacity: 1, scale: 1 },
+      { opacity: 1, scale: 1, display: "flex" },
       {
         opacity: 0,
         scale: 5,
@@ -136,8 +137,20 @@ export function setupGsapAnimations(
           pin: true,
           pinSpacing: false, // Modifica qui: imposta a false per evitare spazi vuoti
           anticipatePin: 1,
+          onUpdate: (self) => {
+            // Quando l'animazione raggiunge la fine, nascondi l'elemento
+            if (self.progress === 1) {
+              gsap.set(heroRef.current, { display: "none" });
+            }
+          },
           onLeave: () => {
+            // Quando si scrolla oltre la fine, nascondi l'elemento
+            gsap.set(heroRef.current, { display: "none" });
             ScrollTrigger.refresh();
+          },
+          onEnterBack: () => {
+            // Quando si scrolla indietro, mostra di nuovo l'elemento
+            gsap.set(heroRef.current, { display: "flex" });
           }
         },
       }

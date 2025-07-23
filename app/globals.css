@@ -144,9 +144,10 @@ html, body {
 
 /*For smooth scrolling*/
 #scroll-container {
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   overscroll-behavior: none;
+  position: relative;
 }
 
 /* Disabilita esplicitamente lo scrolling orizzontale */
@@ -159,6 +160,26 @@ section {
   overflow-x: hidden !important;
   max-width: 100vw;
 }
+
+.section-spacing {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 640px) {
+  .section-spacing {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
 
 
 

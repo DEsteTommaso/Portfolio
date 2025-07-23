@@ -4,7 +4,7 @@ import HeroHeadline from "@/components/ui/hero-headline";
 import CardProject from "@/components/ui/card-project";
 import { Roboto_Flex, Anton } from "next/font/google";
 import { setupGsapAnimations } from "@/helpers/gsapAnimations";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import { BackgroundBeams } from "@/components/ui/background-firefly";
 import ScrollBar from "smooth-scrollbar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Skill from "@/components/ui/skill";

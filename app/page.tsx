@@ -146,7 +146,7 @@ return (
             className="section-spacing flex items-center justify-evenly h-auto w-auto padding-x lg:mb-0"
             ref={fadeOutSkillsRef}
           >
-            <Skill ref={skillsRef} />
+            <Skill ref={skillsRef} className={"skill-section"}/>
           </section>
 
           {/* Progetti */}

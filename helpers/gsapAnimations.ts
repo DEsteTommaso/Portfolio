@@ -34,26 +34,76 @@ export function setupGsapAnimations(
   });
 
   if (skillsRef.current) {
-    const skillElements = skillsRef.current.querySelectorAll(".animate-skill");
-    const isTabletOrSmaller = window.innerWidth <= 1024;
-    gsap.fromTo(
-      skillElements,
-      { opacity: 0, y: 50 },
-      {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      ease: "power2.out",
-      stagger: 0.4,
-      scrollTrigger: {
-        trigger: skillsRef.current,
-        start: isTabletOrSmaller ? "top 60%" : "top 80%",
-        end: isTabletOrSmaller ? "bottom bottom" : "top top",
-        scrub: true,
-        scroller: scroller,
-      },
+    // Anima prima il titolo "SKILLS"
+    const skillTitle = skillsRef.current.querySelector(".skill-title");
+    if (skillTitle) {
+      gsap.fromTo(
+        skillTitle,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: skillTitle,
+            start: "top 85%",
+            end: "top 20%",
+            scrub: true,
+            scroller: scroller,
+          },
+        }
+      );
+    }
+
+    // Anima le categorie individualmente quando entrano nella viewport
+    const skillCategories = skillsRef.current.querySelectorAll(".skill-category");
+    
+    skillCategories.forEach((category) => {
+      // Timeline per ogni categoria (titolo + skills)
+      const categoryTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: category,
+          start: "top 80%",
+          end: "top 60%",
+          scrub: true, // No scrub per animazioni complete immediate
+          scroller: scroller,
+        },
+      });
+      
+      // Anima il titolo della categoria
+      const categoryTitle = category.querySelector(".skill-category-title");
+      if (categoryTitle) {
+        categoryTimeline.fromTo(
+          categoryTitle,
+          { opacity: 0, x: -30 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          }
+        );
       }
-    );
+
+      // Anima gli elementi della skill della categoria
+      const skillItems = category.querySelectorAll(".skill-item");
+      
+      skillItems.forEach((item, itemIndex) => {
+        categoryTimeline.fromTo(
+          item,
+          { opacity: 0, y: 20, scale: 0.9 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.3,
+            ease: "back.out(1.1)",
+          },
+          0.1 + (itemIndex * 0.08) // Stagger tra gli elementi della stessa categoria
+        );
+      });
+    });
   }
 
   if (fadeOutSkillsRef.current) {
@@ -88,7 +138,7 @@ export function setupGsapAnimations(
         ease: "power2.out",
         scrollTrigger: {
           trigger: fadeInProjectsRef.current,
-          start: isPhoneOrSmaller ? "top bottom" : "top 60%", // Inizia quando il contenitore entra nella viewport dal basso
+          start: isPhoneOrSmaller ? "top 90%" : "top 60%", // Inizia quando il contenitore entra nella viewport dal basso
           end: isPhoneOrSmaller ? "center 50%" : "top 20%", // Finisce quando il fondo del contenitore raggiunge il 70% dell'altezza dello schermo
           scrub: true,
           scroller: scroller,
@@ -100,7 +150,6 @@ export function setupGsapAnimations(
     const cards = projectsRef.current.querySelectorAll(".project-card");
     const isPhoneOrSmaller = window.innerWidth <= 767;
     const isTablet = window.innerWidth > 767 && window.innerWidth <= 1280;
-    const isMobileDevice = isPhoneOrSmaller || isTablet;
     
 if (isPhoneOrSmaller) {
   // Mobile: ogni carta al suo trigger
@@ -193,7 +242,7 @@ if (isPhoneOrSmaller) {
         start: "top 80%",
         end: "top 40%",
         scrub: true,
-        scroller,
+        scroller: scroller,
       },
     }
   );

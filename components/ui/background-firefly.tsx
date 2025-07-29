@@ -36,7 +36,7 @@ export const BackgroundBeams = React.memo(
       
       // Generate fireflies
       const generateFireflies = () => {
-        const fireflyCount = window.innerWidth < 1024 ? 5 : 15;
+        const fireflyCount = window.innerWidth < 1024 ? 5 : 10;
         const newFireflies: Firefly[] = [];
         
         for (let i = 0; i < fireflyCount; i++) {
@@ -55,7 +55,7 @@ export const BackgroundBeams = React.memo(
 
       // Generate stars
       const generateStars = () => {
-        const starCount = window.innerWidth < 1024 ? 10 : 40;
+        const starCount = window.innerWidth < 1024 ? 10 : 30;
         const newStars = [];
         
         for (let i = 0; i < starCount; i++) {
@@ -71,23 +71,11 @@ export const BackgroundBeams = React.memo(
         setStars(newStars);
       };
 
-      // Regenerate positions periodically
-      const regeneratePositions = () => {
-        generateFireflies(); // Solo le lucciole cambiano posizione
-      };
 
       generateFireflies();
       generateStars();
       
-      // Regenerate fireflies positions every 10-15 seconds
-      const intervalId = setInterval(regeneratePositions, 10000 + Math.random() * 5000);
-      
       window.addEventListener('resize', handleResize);
-      
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        clearInterval(intervalId);
-      };
     }, []);
 
     return (

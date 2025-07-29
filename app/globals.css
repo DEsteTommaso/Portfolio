@@ -150,6 +150,21 @@ html, body {
   position: relative;
 }
 
+/* Migliora la gestione sui dispositivi mobili */
+@media screen and (max-width: 768px) {
+  #scroll-container {
+    /* Usa dvh quando disponibile per una migliore compatibilità mobile */
+    height: 100dvh;
+    /* Fallback per browser che non supportano dvh */
+    height: calc(100vh + env(safe-area-inset-bottom, 0px));
+  }
+  
+  /* Assicura che il contenuto non venga tagliato sui dispositivi mobili */
+  .scrollbar-content {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+}
+
 /* Disabilita esplicitamente lo scrolling orizzontale */
 .scrollbar-track.scrollbar-track-x {
   display: none !important;
@@ -177,6 +192,19 @@ section {
   .section-spacing {
     padding-top: 8rem;
     padding-bottom: 8rem;
+  }
+}
+
+/* Assicura che l'ultima sezione sia sempre visibile */
+section:last-child {
+  margin-bottom: 0;
+  padding-bottom: clamp(3rem, 8vh, 8rem);
+}
+
+/* Miglioria specifica per iOS Safari e Chrome mobile */
+@supports (-webkit-touch-callout: none) {
+  section:last-child {
+    padding-bottom: max(3rem, env(safe-area-inset-bottom, 0px) + 3rem);
   }
 }
 

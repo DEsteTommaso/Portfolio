@@ -192,7 +192,7 @@ return (
           </section>
 
           {/* Contatti */}
-          <section className="section-spacing flex flex-col items-center justify-center h-auto w-auto padding-x pb-10">
+          <section className="section-spacing flex flex-col items-center justify-center h-auto w-auto padding-x pb-20 sm:pb-24 md:pb-32">
             <div className="flex flex-col items-center justify-center gap-6">
               <div className="colorful-text">GET IN TOUCH</div>
               <div className="flex flex-col items-center justify-between text-center gap-3">

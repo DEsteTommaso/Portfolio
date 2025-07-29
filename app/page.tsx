@@ -37,18 +37,18 @@ export default function Home() {
       renderByPixels: true,
       alwaysShowTracks: false,
       plugins: {
-        overscroll: false
+        overscroll: false,
       },
     });
 
     // Disabilita esplicitamente lo scroll orizzontale
     scrollbar.track.xAxis.element.remove(); // Rimuove fisicamente la barra di scorrimento orizzontale
-    
+
     // Inoltre, blocca il movimento orizzontale
     scrollbar.addListener((status) => {
       scrollbar.setPosition(0, status.offset.y); // Resetta sempre la posizione X a 0
     });
-    
+
     // Configurazione del proxy per ScrollTrigger
     ScrollTrigger.scrollerProxy(scrollEl, {
       scrollTop(value?: number) {
@@ -94,7 +94,7 @@ export default function Home() {
     };
   }, []);
 
-return (
+  return (
     <>
       <BackgroundBeams />
       <div
@@ -146,7 +146,7 @@ return (
             className="section-spacing flex items-center justify-evenly h-auto w-auto padding-x lg:mb-0"
             ref={fadeOutSkillsRef}
           >
-            <Skill ref={skillsRef} className={"skill-section"}/>
+            <Skill ref={skillsRef} className={"skill-section"} />
           </section>
 
           {/* Progetti */}
@@ -192,14 +192,13 @@ return (
           </section>
 
           {/* Contatti */}
-          <section className="section-spacing flex flex-col items-center justify-center h-auto w-auto padding-x pb-20 sm:pb-24 md:pb-32">
+          <section
+            className="flex flex-col items-center justify-center h-auto w-auto padding-x 
+            pt-16 pb-40 sm:pt-16 sm:pb-32 md:pt-16 md:pb-40 lg:section-spacing"
+          >
             <div className="flex flex-col items-center justify-center gap-6">
               <div className="colorful-text">GET IN TOUCH</div>
               <div className="flex flex-col items-center justify-between text-center gap-3">
-                {/*
-                  Mostra il super title solo su desktop (lg e oltre).
-                  Usa hidden su mobile/tablet, block su desktop.
-                */}
                 <div className={`${anton.className} text-2xl md:text-[3rem]`}>
                   <a href="mailto:tommaso.deste.ve@gmail.com">
                     tommaso.deste.ve@gmail.com

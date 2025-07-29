@@ -195,18 +195,7 @@ section {
   }
 }
 
-/* Assicura che l'ultima sezione sia sempre visibile */
-section:last-child {
-  margin-bottom: 0;
-  padding-bottom: clamp(3rem, 8vh, 8rem);
-}
 
-/* Miglioria specifica per iOS Safari e Chrome mobile */
-@supports (-webkit-touch-callout: none) {
-  section:last-child {
-    padding-bottom: max(3rem, env(safe-area-inset-bottom, 0px) + 3rem);
-  }
-}
 
 
 

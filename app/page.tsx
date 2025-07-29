@@ -194,7 +194,7 @@ export default function Home() {
           {/* Contatti */}
           <section
             className="flex flex-col items-center justify-center h-auto w-auto padding-x 
-            pt-16 pb-40 sm:pt-16 sm:pb-32 md:pt-16 md:pb-40 lg:section-spacing"
+            pt-16 pb-40 sm:pt-16 sm:pb-32 md:pt-16 md:pb-40 lg:pt-16 lg:pb-16"
           >
             <div className="flex flex-col items-center justify-center gap-6">
               <div className="colorful-text">GET IN TOUCH</div>

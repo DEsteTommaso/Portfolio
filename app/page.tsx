@@ -171,7 +171,7 @@ export default function Home() {
                 />
                 <CardProject
                   title="DriveSafe"
-                  description="Idle Little Heroes Tycoon is a 2D idle game that combines strategic gameplay with epic battles against hordes of dark"
+                  description="Free community-powered app that alerts you to speed cameras, ZTL zones, and traffic controls across Italy in real time."
                   link="https://play.google.com/store/apps/details?id=com.tom904.checkautovelox"
                   className="project-card"
                 />

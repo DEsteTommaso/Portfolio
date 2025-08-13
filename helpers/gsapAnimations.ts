@@ -1,6 +1,5 @@
-gsap
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,8 +9,7 @@ export function setupGsapAnimations(
   fadeOutSkillsRef: React.RefObject<HTMLDivElement | null>,
   fadeInProjectsRef: React.RefObject<HTMLDivElement | null>,
   projectsRef: React.RefObject<HTMLDivElement | null>,
-  heroRef: React.RefObject<HTMLDivElement | null>,
-  scroller: HTMLElement
+  heroRef: React.RefObject<HTMLDivElement | null>
 ) {
   if (!whoAmIRef.current) return;
 
@@ -23,7 +21,7 @@ export function setupGsapAnimations(
         start: "top 90%",
         end: "top 00%",
         scrub: true,
-        scroller: scroller,
+  // uses default window scroller
       },
     });
     tl.fromTo(
@@ -34,7 +32,7 @@ export function setupGsapAnimations(
   });
 
   if (skillsRef.current) {
-    // Anima prima il titolo "SKILLS"
+    // Animate the "SKILLS" title first
     const skillTitle = skillsRef.current.querySelector(".skill-title");
     if (skillTitle) {
       gsap.fromTo(
@@ -50,28 +48,28 @@ export function setupGsapAnimations(
             start: "top 85%",
             end: "top 20%",
             scrub: true,
-            scroller: scroller,
+            // uses default window scroller
           },
         }
       );
     }
 
-    // Anima le categorie individualmente quando entrano nella viewport
+    // Animate individual categories as they enter the viewport
     const skillCategories = skillsRef.current.querySelectorAll(".skill-category");
     
     skillCategories.forEach((category) => {
-      // Timeline per ogni categoria (titolo + skills)
+      // Timeline for each category (title + skills)
       const categoryTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: category,
           start: "top 80%",
           end: "top 60%",
-          scrub: true, // No scrub per animazioni complete immediate
-          scroller: scroller,
+          scrub: true,
+          // uses default window scroller
         },
       });
       
-      // Anima il titolo della categoria
+      // Animate the category title
       const categoryTitle = category.querySelector(".skill-category-title");
       if (categoryTitle) {
         categoryTimeline.fromTo(
@@ -86,7 +84,7 @@ export function setupGsapAnimations(
         );
       }
 
-      // Anima gli elementi della skill della categoria
+      // Animate the skill items of the category
       const skillItems = category.querySelectorAll(".skill-item");
       
       skillItems.forEach((item, itemIndex) => {
@@ -100,7 +98,8 @@ export function setupGsapAnimations(
             duration: 0.3,
             ease: "back.out(1.1)",
           },
-          0.1 + (itemIndex * 0.08) // Stagger tra gli elementi della stessa categoria
+            // Stagger between items in the same category
+          0.1 + (itemIndex * 0.08) 
         );
       });
     });
@@ -120,7 +119,7 @@ export function setupGsapAnimations(
           start: "top 60%",
           end: "bottom 20%",
           scrub: true,
-          scroller: scroller,
+          // uses default window scroller
         },
       }
     );
@@ -138,10 +137,10 @@ export function setupGsapAnimations(
         ease: "power2.out",
         scrollTrigger: {
           trigger: fadeInProjectsRef.current,
-          start: isPhoneOrSmaller ? "top 90%" : "top 60%", // Inizia quando il contenitore entra nella viewport dal basso
-          end: isPhoneOrSmaller ? "center 50%" : "top 20%", // Finisce quando il fondo del contenitore raggiunge il 70% dell'altezza dello schermo
+          start: isPhoneOrSmaller ? "top 90%" : "top 60%", // Start when the top of the element reaches 90% or 60% of the viewport height
+          end: isPhoneOrSmaller ? "center 50%" : "top 20%", // End when the bottom of the element reaches 50% or 20% of the viewport height
           scrub: true,
-          scroller: scroller,
+          // uses default window scroller
         },
       }
     );
@@ -152,7 +151,7 @@ export function setupGsapAnimations(
     const isTablet = window.innerWidth > 767 && window.innerWidth <= 1280;
     
 if (isPhoneOrSmaller) {
-  // Mobile: ogni carta al suo trigger
+  // Mobile: each card has its own trigger
   cards.forEach((card) => {
     gsap.fromTo(
       card,
@@ -168,24 +167,24 @@ if (isPhoneOrSmaller) {
           start: "top 95%",
           end: "top 80%",
           scrub: true,
-          scroller: scroller,
+          // uses default window scroller
         },
       }
     );
   });
 } else if (isTablet) {
-  // Tablet: gestisce le carte in righe da 2 con scrub e stagger
-  const firstRow = Array.from(cards).slice(0, 2);  // Prime 2 carte
-  const secondRow = Array.from(cards).slice(2, 4); // Ultime 2 carte
-  
-  // Timeline per la prima riga con scrub
+  // Tablet: manage cards in 2-column rows with scrub and stagger
+  const firstRow = Array.from(cards).slice(0, 2);  // First 2 cards
+  const secondRow = Array.from(cards).slice(2, 4); // Last 2 cards
+
+  // Timeline for the first row with scrub
   const firstRowTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: firstRow[0],
       start: "top 95%",
       end: "top 60%",
       scrub: true,
-      scroller: scroller,
+  // uses default window scroller
     },
   });
   
@@ -198,18 +197,18 @@ if (isPhoneOrSmaller) {
       y: 0,
       duration: 0.6,
       ease: "power2.out",
-      stagger: 1.5, // Stagger tra le carte della prima riga
+      stagger: 1.5, // Stagger between the cards in the first row
     }
   );
-  
-  // Timeline per la seconda riga con scrub
+
+  // Timeline for the second row with scrub
   const secondRowTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: secondRow[0],
       start: "top 95%",
       end: "top 60%",
       scrub: true,
-      scroller: scroller,
+  // uses default window scroller
     },
   });
   
@@ -222,11 +221,11 @@ if (isPhoneOrSmaller) {
       y: 0,
       duration: 0.6,
       ease: "power2.out",
-      stagger: 1.5, // Stagger tra le carte della seconda riga
+      stagger: 1.5, // Stagger between the cards in the second row
     }
   );
 } else {
-  // Desktop: tutte e 4 in fila, come già fai
+  // Desktop: all 4 in a row, as you already do
   gsap.fromTo(
     cards,
     { opacity: 0, scale: 0.5, y: 40 },
@@ -242,7 +241,7 @@ if (isPhoneOrSmaller) {
         start: "top 80%",
         end: "top 40%",
         scrub: true,
-        scroller: scroller,
+  // uses default window scroller
       },
     }
   );
@@ -261,24 +260,24 @@ if (isPhoneOrSmaller) {
         scrollTrigger: {
           trigger: heroRef.current,
           start: "center center",
-          end: "+=100%", // Modifica qui: usa una percentuale fissa invece di "bottom top"
+          end: "+=100%", 
           scrub: true,
           pin: true,
-          pinSpacing: false, // Modifica qui: imposta a false per evitare spazi vuoti
+          pinSpacing: false, 
           anticipatePin: 1,
           onUpdate: (self) => {
-            // Quando l'animazione raggiunge la fine, nascondi l'elemento
+            // When the animation reaches the end, hide the element
             if (self.progress === 1) {
               gsap.set(heroRef.current, { display: "none" });
             }
           },
           onLeave: () => {
-            // Quando si scrolla oltre la fine, nascondi l'elemento
+            // When scrolling past the end, hide the element
             gsap.set(heroRef.current, { display: "none" });
             ScrollTrigger.refresh();
           },
           onEnterBack: () => {
-            // Quando si scrolla indietro, mostra di nuovo l'elemento
+            // When scrolling back, show the element again
             gsap.set(heroRef.current, { display: "flex" });
           }
         },

@@ -10,20 +10,18 @@ const anton = Anton({
 
 // Skill component displays categorized skills with icons and titles
 interface SkillProps {
-  // Puoi aggiungere proprietà in futuro se necessario
   className?: string;
 }
 
-// Utilizziamo forwardRef per permettere al componente di ricevere un ref esterno
+// We use forwardRef to allow the component to receive an external ref
 const Skill = forwardRef<HTMLDivElement, SkillProps>(
   ({ className = "" }, ref) => {
     return (
-      // Il ref viene applicato qui al contenitore principale
+      // The ref is applied here to the main container
       <div
         className={`flex flex-col items-start justify-center lg:gap-18 gap-10 ${className}`}
         ref={ref}
       >
-        {/* Resto del componente invariato */}
         <div className="colorful-text skill-title">SKILLS</div>
 
         {/* FRONTEND skills group */}
@@ -203,7 +201,6 @@ const Skill = forwardRef<HTMLDivElement, SkillProps>(
             </div>
           </div>
         </div>
-        {/* And more... integrato come skill-item ma con break line */}
         <div
           className={`flex flex-col sm:flex-row items-start justify-between gap-6 mb-4 w-full skill-category ${className}`}
         >
@@ -218,7 +215,6 @@ const Skill = forwardRef<HTMLDivElement, SkillProps>(
   }
 );
 
-// Aggiungi un displayName al componente
 Skill.displayName = "Skill";
 
 export default Skill;

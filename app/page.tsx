@@ -5,9 +5,11 @@ import CardProject from "@/components/ui/card-project";
 import { Roboto_Flex, Anton } from "next/font/google";
 import { setupGsapAnimations } from "@/helpers/gsapAnimations";
 import { BackgroundBeams } from "@/components/ui/background-firefly";
-import ScrollBar from "smooth-scrollbar";
+import "lenis/dist/lenis.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Skill from "@/components/ui/skill";
+import Lenis from "lenis";
+import gsap from "gsap";
 
 const robotoFlex = Roboto_Flex({
   weight: ["400", "700"],
@@ -28,69 +30,33 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const scrollEl = document.querySelector("#scroll-container") as HTMLElement;
-    if (!scrollEl) return;
+    // Set up smooth scrolling with Lenis and synchronize GSAP ScrollTrigger
+    const lenis = new Lenis({ autoRaf: false });
 
-    const scrollbar = ScrollBar.init(scrollEl, {
-      damping: 0.05,
-      thumbMinSize: 20,
-      renderByPixels: true,
-      alwaysShowTracks: false,
-      plugins: {
-        overscroll: false,
-      },
-    });
+    lenis.on("scroll", ScrollTrigger.update);
 
-    // Disabilita esplicitamente lo scroll orizzontale
-    scrollbar.track.xAxis.element.remove(); // Rimuove fisicamente la barra di scorrimento orizzontale
+    const tickerFunc = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(tickerFunc);
 
-    // Inoltre, blocca il movimento orizzontale
-    scrollbar.addListener((status) => {
-      scrollbar.setPosition(0, status.offset.y); // Resetta sempre la posizione X a 0
-    });
+    gsap.ticker.lagSmoothing(0);
 
-    // Configurazione del proxy per ScrollTrigger
-    ScrollTrigger.scrollerProxy(scrollEl, {
-      scrollTop(value?: number) {
-        if (arguments.length && value !== undefined) {
-          scrollbar.scrollTop = value;
-        }
-        return scrollbar.scrollTop;
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: "transform",
-    });
-
-    // Agganciare l'update di GSAP al scrollbar
-    scrollbar.addListener(ScrollTrigger.update);
-
-    // Impostare il contenitore di default
-    ScrollTrigger.defaults({ scroller: scrollEl });
-
-    // Ora configuriamo le animazioni GSAP
+    // set up GSAP animations (ScrollTrigger uses the default scroller: window)
     setupGsapAnimations(
       whoAmIRef,
       skillsRef,
       fadeOutSkillsRef,
       fadeInProjectsRef,
       projectsRef,
-      heroRef,
-      scrollEl
+      heroRef
     );
 
     return () => {
+      gsap.ticker.lagSmoothing(1000, 16); // restore default lag smoothing
+      gsap.ticker.remove(tickerFunc);
+      lenis.destroy();
       ScrollTrigger.getAll().forEach((st) => st.kill());
-      if (scrollbar) {
-        scrollbar.removeListener(ScrollTrigger.update);
-        scrollbar.destroy();
-      }
     };
   }, []);
 
@@ -99,10 +65,10 @@ export default function Home() {
       <BackgroundBeams />
       <div
         id="scroll-container"
-        className={`${robotoFlex.className} h-screen overflow-x-hidden z-10`}
+        className={`${robotoFlex.className} min-h-screen overflow-x-hidden z-10`}
       >
         <main className="py-4 text-normal">
-          {/* Hero section */}
+          {/* Main hero section with headline and intro animation */}
           <section
             className="section-spacing flex items-center justify-center h-screen w-auto"
             ref={heroRef}
@@ -110,7 +76,7 @@ export default function Home() {
             <HeroHeadline />
           </section>
 
-          {/* Chi sono */}
+          {/* About section: personal introduction and description */}
           <section
             className="section-spacing flex flex-col items-start justify-center h-auto w-auto padding-x lg:mb-0"
             ref={whoAmIRef}
@@ -141,7 +107,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Competenze */}
+          {/* Skills section: displays technology and skill icons */}
           <section
             className="section-spacing flex items-center justify-evenly h-auto w-auto padding-x lg:mb-0"
             ref={fadeOutSkillsRef}
@@ -149,7 +115,7 @@ export default function Home() {
             <Skill ref={skillsRef} className={"skill-section"} />
           </section>
 
-          {/* Progetti */}
+          {/* Projects section: grid of featured project cards */}
           <section
             className="section-spacing flex items-center justify-center h-auto w-full padding-x"
             ref={fadeInProjectsRef}
@@ -162,7 +128,7 @@ export default function Home() {
                 PROJECTS THAT BRING IDEAS TO LIFE
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 mb-8 justify-items-center items-center">
-                {/* Elenco dei progetti */}
+                {/* Project cards list */}
                 <CardProject
                   title="Little Heroes"
                   description="Idle Little Heroes Tycoon is a 2D idle game that combines strategic gameplay with epic battles against hordes of dark"
@@ -191,7 +157,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Contatti */}
+          {/* Contact section: email and social links */}
           <section
             className="flex flex-col items-center justify-center h-auto w-auto padding-x 
             pt-16 pb-40 sm:pt-16 sm:pb-32 md:pt-16 md:pb-40 lg:pt-16 lg:pb-30"

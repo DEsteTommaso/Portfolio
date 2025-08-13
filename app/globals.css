@@ -67,7 +67,7 @@ body {
 }
 
 @keyframes title-gradient-move {
-  /* da 0% a 100% scorri di due interi “viewport” di gradiente */
+  /* from 0% to 100% scrolls through two full "viewports" of the gradient */
   0%   { background-position:   0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position:   0% 50%; }
@@ -139,38 +139,27 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; 
+  overflow-x: hidden;
+  overflow-y: auto; 
 }
 
 /*For smooth scrolling*/
 #scroll-container {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
   overscroll-behavior: none;
   position: relative;
 }
 
-/* Migliora la gestione sui dispositivi mobili */
+/* Improve handling on mobile devices */
 @media screen and (max-width: 768px) {
   #scroll-container {
-    /* Usa dvh quando disponibile per una migliore compatibilità mobile */
-    height: 100dvh;
-    /* Fallback per browser che non supportano dvh */
-    height: calc(100vh + env(safe-area-inset-bottom, 0px));
-  }
-  
-  /* Assicura che il contenuto non venga tagliato sui dispositivi mobili */
-  .scrollbar-content {
-    padding-bottom: env(safe-area-inset-bottom, 20px);
+    /* Use dvh when available for better mobile compatibility */
+    min-height: 100dvh;
   }
 }
 
-/* Disabilita esplicitamente lo scrolling orizzontale */
-.scrollbar-track.scrollbar-track-x {
-  display: none !important;
-}
-
-/* Aggiunge un overflow nascosto sui contenitori che potrebbero causare scroll orizzontale */
+/* Adds hidden overflow to containers that might cause horizontal scrolling */
 section {
   overflow-x: hidden !important;
   max-width: 100vw;

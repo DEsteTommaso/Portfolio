@@ -1,22 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function InitialLoader() {
   const [visible, setVisible] = useState(true);
   const [hiding, setHiding] = useState(false);
-  // Minimum total loader visibility: 2s from mount to begin hide
-  const MIN_VISIBLE_MS = 2000;
   const HIDE_ANIM_MS = 450;
-  const startTimeRef = useRef<number>(
-    typeof performance !== "undefined" ? performance.now() : Date.now()
-  );
 
   useEffect(() => {
-    let startHideTimeoutId: number | undefined;
     let removeTimeoutId: number | undefined;
 
-    const triggerHide = () => {
+    const onLoaded = () => {
+      // Immediately start hiding when fully loaded
       setHiding(true);
       removeTimeoutId = window.setTimeout(
         () => setVisible(false),
@@ -24,21 +19,11 @@ export default function InitialLoader() {
       );
     };
 
-    const onLoaded = () => {
-      // Calculates how long the loader has already been visible and waits only the remaining time
-      const now =
-        typeof performance !== "undefined" ? performance.now() : Date.now();
-      const elapsed = now - startTimeRef.current;
-      const remaining = Math.max(0, MIN_VISIBLE_MS - elapsed);
-      startHideTimeoutId = window.setTimeout(triggerHide, remaining);
-    };
-
     if (typeof window === "undefined") return;
 
     if (document.readyState === "complete") {
       onLoaded();
       return () => {
-        if (startHideTimeoutId) window.clearTimeout(startHideTimeoutId);
         if (removeTimeoutId) window.clearTimeout(removeTimeoutId);
       };
     }
@@ -47,7 +32,6 @@ export default function InitialLoader() {
     window.addEventListener("load", handler, { once: true });
     return () => {
       window.removeEventListener("load", handler);
-      if (startHideTimeoutId) window.clearTimeout(startHideTimeoutId);
       if (removeTimeoutId) window.clearTimeout(removeTimeoutId);
     };
   }, []);

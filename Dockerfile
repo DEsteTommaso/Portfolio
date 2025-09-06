@@ -11,16 +11,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# 3. Production image, copy all and run
-FROM node:18-alpine AS runner
-WORKDIR /app
-
-# Only copy what’s needed
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-
-ENV NODE_ENV=production
-EXPOSE 3000
-CMD ["npm", "run", "start"]
+# 3. Serve with nginx
+FROM nginx:1.27-alpine
+COPY --from=builder /app/out /usr/share/nginx/html
+EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=3s CMD wget -qO- http://localhost/ || exit 1

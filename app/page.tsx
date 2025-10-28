@@ -127,33 +127,33 @@ export default function Home() {
               <div className="colorful-text mb-8 text-start ">
                 PROJECTS THAT BRING IDEAS TO LIFE
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 mb-8 justify-items-center items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 mb-8 justify-items-center items-center">
                 {/* Project cards list */}
                 <CardProject
                   title="Little Heroes"
-                  description="Idle Little Heroes Tycoon is a 2D idle game that combines strategic gameplay with epic battles against hordes of dark"
+                  description="Idle Little Heroes Tycoon is a 2D idle game that blends strategic progression with fast-paced battles against hordes of enemies."
                   link="https://github.com/DEsteTommaso/Idle"
                   className="project-card"
                 />
                 <CardProject
                   title="DriveSafe"
-                  description="Free community-powered app that alerts you to speed cameras, ZTL zones, and traffic controls across Italy in real time."
+                  description="A free, community-driven app that provides real-time alerts for speed cameras, ZTL zones, and traffic controls across Italy."
                   link="https://play.google.com/store/apps/details?id=com.tom904.checkautovelox"
                   className="project-card"
                 />
                 <CardProject
-                  title="SkyRoute "
-                  description="SkyRoute is a fullstack web application, copy of the famous Skyscanner, that allows you to search for flights and book them"
-                  link=""
+                  title="App Dogs"
+                  description="App Dogs is a mobile app that helps dog owners discover nearby dog‑friendly places and services. Follow updates on TikTok and Instagram."
+                  link="https://www.tiktok.com/@tommo.deste"
                   className="project-card"
                 />
                 <CardProject
                   title="More..."
-                  description="more projects coming soon"
+                  description="More projects coming soon."
                   link=""
                   className="project-card"
                 />
-              </div>
+                </div>
             </div>
           </section>
 

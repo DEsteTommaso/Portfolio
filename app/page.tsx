@@ -142,8 +142,8 @@ export default function Home() {
                   className="project-card"
                 />
                 <CardProject
-                  title="App Dogs"
-                  description="App Dogs is a mobile app that helps dog owners discover nearby dog‑friendly places and services. Follow updates on TikTok and Instagram."
+                  title="DogArea"
+                  description="DogArea is a mobile app that helps dog owners discover nearby dog‑friendly places and services. Follow updates on TikTok and Instagram."
                   link="https://www.tiktok.com/@tommo.deste"
                   className="project-card"
                 />

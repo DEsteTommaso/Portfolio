@@ -9,27 +9,31 @@ export function setupGsapAnimations(
   fadeOutSkillsRef: React.RefObject<HTMLDivElement | null>,
   fadeInProjectsRef: React.RefObject<HTMLDivElement | null>,
   projectsRef: React.RefObject<HTMLDivElement | null>,
-  heroRef: React.RefObject<HTMLDivElement | null>
+  heroRef: React.RefObject<HTMLDivElement | null>,
+  navRef: React.RefObject<HTMLElement | null>
 ) {
-  if (!whoAmIRef.current) return;
 
-  const elements = whoAmIRef.current.querySelectorAll(".animate-fade-scrolldown");
-  elements.forEach((el) => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: "top 90%",
-        end: "top 00%",
-        scrub: true,
-  // uses default window scroller
-      },
+  if (whoAmIRef.current) {
+    const elements = whoAmIRef.current.querySelectorAll(
+      ".animate-fade-scrolldown"
+    );
+    elements.forEach((el) => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          end: "top 00%",
+          scrub: true,
+          // uses default window scroller
+        },
+      });
+      tl.fromTo(
+        el,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+      ).to(el, { opacity: 0, y: 50, duration: 1, ease: "power2.in" });
     });
-    tl.fromTo(
-      el,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
-    ).to(el, { opacity: 0, y: 50, duration: 1, ease: "power2.in" });
-  });
+  }
 
   if (skillsRef.current) {
     // Animate the "SKILLS" title first
@@ -55,8 +59,9 @@ export function setupGsapAnimations(
     }
 
     // Animate individual categories as they enter the viewport
-    const skillCategories = skillsRef.current.querySelectorAll(".skill-category");
-    
+    const skillCategories =
+      skillsRef.current.querySelectorAll(".skill-category");
+
     skillCategories.forEach((category) => {
       // Timeline for each category (title + skills)
       const categoryTimeline = gsap.timeline({
@@ -68,7 +73,7 @@ export function setupGsapAnimations(
           // uses default window scroller
         },
       });
-      
+
       // Animate the category title
       const categoryTitle = category.querySelector(".skill-category-title");
       if (categoryTitle) {
@@ -86,7 +91,7 @@ export function setupGsapAnimations(
 
       // Animate the skill items of the category
       const skillItems = category.querySelectorAll(".skill-item");
-      
+
       skillItems.forEach((item, itemIndex) => {
         categoryTimeline.fromTo(
           item,
@@ -98,8 +103,8 @@ export function setupGsapAnimations(
             duration: 0.3,
             ease: "back.out(1.1)",
           },
-            // Stagger between items in the same category
-          0.1 + (itemIndex * 0.08) 
+          // Stagger between items in the same category
+          0.1 + itemIndex * 0.08
         );
       });
     });
@@ -124,7 +129,7 @@ export function setupGsapAnimations(
       }
     );
   }
-  
+
   if (fadeInProjectsRef.current) {
     const isPhoneOrSmaller = window.innerWidth <= 767;
     gsap.fromTo(
@@ -149,104 +154,103 @@ export function setupGsapAnimations(
     const cards = projectsRef.current.querySelectorAll(".project-card");
     const isPhoneOrSmaller = window.innerWidth <= 767;
     const isTablet = window.innerWidth > 767 && window.innerWidth <= 1280;
-    
-if (isPhoneOrSmaller) {
-  // Mobile: each card has its own trigger
-  cards.forEach((card) => {
-    gsap.fromTo(
-      card,
-      { opacity: 0, scale: 0.5, y: 40 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
+
+    if (isPhoneOrSmaller) {
+      // Mobile: each card has its own trigger
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, scale: 0.5, y: 40 },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 95%",
+              end: "top 80%",
+              scrub: true,
+              // uses default window scroller
+            },
+          }
+        );
+      });
+    } else if (isTablet) {
+      // Tablet: manage cards in 2-column rows with scrub and stagger
+      const firstRow = Array.from(cards).slice(0, 2); // First 2 cards
+      const secondRow = Array.from(cards).slice(2, 4); // Last 2 cards
+
+      // Timeline for the first row with scrub
+      const firstRowTimeline = gsap.timeline({
         scrollTrigger: {
-          trigger: card,
+          trigger: firstRow[0],
           start: "top 95%",
-          end: "top 80%",
+          end: "top 60%",
           scrub: true,
           // uses default window scroller
         },
-      }
-    );
-  });
-} else if (isTablet) {
-  // Tablet: manage cards in 2-column rows with scrub and stagger
-  const firstRow = Array.from(cards).slice(0, 2);  // First 2 cards
-  const secondRow = Array.from(cards).slice(2, 4); // Last 2 cards
+      });
 
-  // Timeline for the first row with scrub
-  const firstRowTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: firstRow[0],
-      start: "top 95%",
-      end: "top 60%",
-      scrub: true,
-  // uses default window scroller
-    },
-  });
-  
-  firstRowTimeline.fromTo(
-    firstRow,
-    { opacity: 0, scale: 0.5, y: 40 },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: 1.5, // Stagger between the cards in the first row
-    }
-  );
+      firstRowTimeline.fromTo(
+        firstRow,
+        { opacity: 0, scale: 0.5, y: 40 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 1.5, // Stagger between the cards in the first row
+        }
+      );
 
-  // Timeline for the second row with scrub
-  const secondRowTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: secondRow[0],
-      start: "top 95%",
-      end: "top 60%",
-      scrub: true,
-  // uses default window scroller
-    },
-  });
-  
-  secondRowTimeline.fromTo(
-    secondRow,
-    { opacity: 0, scale: 0.5, y: 40 },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: 1.5, // Stagger between the cards in the second row
-    }
-  );
-} else {
-  // Desktop: all 4 in a row, as you already do
-  gsap.fromTo(
-    cards,
-    { opacity: 0, scale: 0.5, y: 40 },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.7,
-      ease: "power2.in",
-      stagger: 0.5,
-      scrollTrigger: {
-        trigger: projectsRef.current,
-        start: "top 80%",
-        end: "top 40%",
-        scrub: true,
-  // uses default window scroller
-      },
-    }
-  );
-}
+      // Timeline for the second row with scrub
+      const secondRowTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: secondRow[0],
+          start: "top 95%",
+          end: "top 60%",
+          scrub: true,
+          // uses default window scroller
+        },
+      });
 
+      secondRowTimeline.fromTo(
+        secondRow,
+        { opacity: 0, scale: 0.5, y: 40 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 1.5, // Stagger between the cards in the second row
+        }
+      );
+    } else {
+      // Desktop: all 4 in a row, as you already do
+      gsap.fromTo(
+        cards,
+        { opacity: 0, scale: 0.5, y: 40 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.in",
+          stagger: 0.5,
+          scrollTrigger: {
+            trigger: projectsRef.current,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: true,
+            // uses default window scroller
+          },
+        }
+      );
+    }
   }
 
   if (heroRef.current) {
@@ -260,26 +264,40 @@ if (isPhoneOrSmaller) {
         scrollTrigger: {
           trigger: heroRef.current,
           start: "center center",
-          end: "+=100%", 
+          end: "+=100%",
           scrub: true,
           pin: true,
-          pinSpacing: false, 
+          pinSpacing: false,
           anticipatePin: 1,
           onUpdate: (self) => {
-            // When the animation reaches the end, hide the element
+            // Sincronizza la navbar con il progresso dell'hero
+            if (navRef.current) {
+              const progress = self.progress;
+              // La navbar appare quando l'hero scompare
+              gsap.set(navRef.current, {
+                opacity: progress,
+                y: -50 * (1 - progress),
+                display: progress > 0.1 ? "flex" : "none"
+              });
+            }
+            
+            // When the animation reaches the end, hide the hero element
             if (self.progress === 1) {
               gsap.set(heroRef.current, { display: "none" });
             }
           },
           onLeave: () => {
-            // When scrolling past the end, hide the element
+            // When scrolling past the end, hide the hero and show navbar
             gsap.set(heroRef.current, { display: "none" });
+            if (navRef.current) {
+              gsap.set(navRef.current, { opacity: 1, y: 0, display: "flex" });
+            }
             ScrollTrigger.refresh();
           },
           onEnterBack: () => {
-            // When scrolling back, show the element again
+            // When scrolling back, show the hero element again
             gsap.set(heroRef.current, { display: "flex" });
-          }
+          },
         },
       }
     );

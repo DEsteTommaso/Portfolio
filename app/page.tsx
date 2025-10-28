@@ -28,6 +28,7 @@ export default function Home() {
   const fadeInProjectsRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     // Set up smooth scrolling with Lenis and synchronize GSAP ScrollTrigger
@@ -49,7 +50,8 @@ export default function Home() {
       fadeOutSkillsRef,
       fadeInProjectsRef,
       projectsRef,
-      heroRef
+      heroRef,
+      navRef
     );
 
     return () => {
@@ -76,6 +78,17 @@ export default function Home() {
             <HeroHeadline />
           </section>
 
+          {/* Navbar */}
+          <section 
+          className="flex justify-end items-center fixed top-0 w-full h-16 z-50"
+          ref={navRef}>
+            <div className="h-full px-4 flex items-center">
+              projects
+            </div>
+            <div className="h-full px-4 flex items-center">
+              works
+            </div>
+          </section>
           {/* About section: personal introduction and description */}
           <section
             className="section-spacing flex flex-col items-start justify-center h-auto w-auto padding-x lg:mb-0"

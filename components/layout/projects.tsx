@@ -1,15 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { ExternalLink, Github } from "lucide-react";
-import TechPill from "@/components/ui/tech-pill";
-import {
-  BodyText,
-  CardTitle,
-  Eyebrow,
-  SectionTitle,
-} from "@/components/ui/typography";
+import ProjectCard from "@/components/ui/project-card";
+import { SectionTitle } from "@/components/ui/typography";
 
 const projects = [
   {
@@ -58,66 +50,24 @@ const projects = [
 export default function Projects() {
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 pb-24 pt-6">
-      <SectionTitle className="mb-10">Selected Works</SectionTitle>
+      <SectionTitle className="mt-40 mb-10">Selected Works</SectionTitle>
 
       <div className="flex flex-col gap-30">
         {projects.map((project, index) => {
           const isReverse = index % 2 === 1;
 
           return (
-            <article
+            <ProjectCard
               key={project.title}
-              className="grid items-center gap-8 lg:grid-cols-2"
-            >
-              <div className={isReverse ? "lg:order-2" : "lg:order-1"}>
-                <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/15 bg-white/5 sm:h-80 lg:h-96">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-              </div>
-
-              <div
-                className={`flex flex-col gap-6 ${isReverse ? "lg:order-1" : "lg:order-2"}`}
-              >
-                <Eyebrow>{project.type}</Eyebrow>
-                <CardTitle className="text-2xl md:text-4xl">
-                  {project.title}
-                </CardTitle>
-                <BodyText className="text-base md:text-lg">
-                  {project.description}
-                </BodyText>
-
-                <div className="flex flex-wrap gap-3">
-                  {project.tags.map((tag) => (
-                    <TechPill key={`${project.title}-${tag}`} label={tag} />
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-6 text-xs font-semibold uppercase tracking-wide text-white/90 md:text-sm">
-                  <Link
-                    href={project.sourceUrl}
-                    target="_blank"
-                    className="inline-flex items-center gap-2 text-white/90 transition hover:text-white"
-                  >
-                    <Github size={18} />
-                    Source
-                  </Link>
-                  <Link
-                    href={project.caseStudyUrl}
-                    target="_blank"
-                    className="inline-flex items-center gap-2 text-white/90 transition hover:text-white"
-                  >
-                    <ExternalLink size={18} />
-                    Case Study
-                  </Link>
-                </div>
-              </div>
-            </article>
+              type={project.type}
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              image={project.image}
+              sourceUrl={project.sourceUrl}
+              caseStudyUrl={project.caseStudyUrl}
+              reverse={isReverse}
+            />
           );
         })}
       </div>

@@ -22,7 +22,7 @@ export default function ExperienceCard({
   technologies,
 }: IExperienceCardProps) {
   return (
-    <article className="flex w-full flex-col gap-8 rounded-2xl border border-white/15 bg-zinc-950 px-6 py-8 md:px-10 md:py-10">
+    <article className="flex w-full flex-col gap-8 rounded-2xl border border-white/15 bg-[#0D0D0D] px-6 py-8 md:px-10 md:py-10">
       <div className="flex items-start justify-between gap-6">
         <div className="flex flex-col gap-2">
           <CardTitle className="text-2xl md:text-4xl">{role}</CardTitle>

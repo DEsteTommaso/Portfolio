@@ -30,18 +30,25 @@ const experiences = [
 
 export default function Experiences() {
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 pb-16">
-      <SectionTitle className="mb-10">Experience</SectionTitle>
-      <div className="flex flex-col gap-30">
-        {experiences.map((experience) => (
-          <ExperienceCard
-            key={`${experience.company}-${experience.role}`}
-            role={experience.role}
-            company={experience.company}
-            period={experience.period}
-            description={experience.description}
-            technologies={experience.technologies}
-          />
+    <section className="mx-auto flex w-full max-w-7xl flex-col pb-16">
+      <SectionTitle className="mt-40 mb-10">work Experience</SectionTitle>
+      <div className="flex flex-col gap-16">
+        {experiences.map((experience, index) => (
+          <div key={`${experience.company}-${experience.role}`}>
+            <ExperienceCard
+              role={experience.role}
+              company={experience.company}
+              period={experience.period}
+              description={experience.description}
+              technologies={experience.technologies}
+            />
+            {index < experiences.length - 1 ? (
+              <div
+                className="mx-auto mt-10 h-10 w-px bg-gradient-to-b from-white/35 via-white/15 to-white/0"
+                aria-hidden="true"
+              />
+            ) : null}
+          </div>
         ))}
       </div>
     </section>

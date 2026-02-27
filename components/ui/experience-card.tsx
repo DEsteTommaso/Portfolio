@@ -11,7 +11,7 @@ interface IExperienceCardProps {
   company: string;
   period: string;
   description: string;
-  technologies: string[];
+  technologies?: string[];
 }
 
 export default function ExperienceCard({
@@ -31,11 +31,13 @@ export default function ExperienceCard({
         <Eyebrow className="pt-1">{period}</Eyebrow>
       </div>
       <BodyText className="text-base md:text-lg">{description}</BodyText>
-      <div className="flex flex-wrap gap-3">
-        {technologies.map((technology) => (
-          <TechPill key={`${company}-${technology}`} label={technology} />
-        ))}
-      </div>
+      {technologies?.length ? (
+        <div className="flex flex-wrap gap-3">
+          {technologies.map((technology) => (
+            <TechPill key={`${company}-${technology}`} label={technology} />
+          ))}
+        </div>
+      ) : null}
     </article>
   );
 }

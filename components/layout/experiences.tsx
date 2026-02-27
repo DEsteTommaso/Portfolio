@@ -1,40 +1,49 @@
+"use client";
+
 import ExperienceCard from "@/components/ui/experience-card";
+import ScrollLinkedReveal from "@/components/ui/scroll-linked-reveal";
 import { SectionTitle } from "@/components/ui/typography";
 
-const experiences = [
+type ExperienceItem = {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  technologies?: string[];
+};
+
+const experiences: ExperienceItem[] = [
   {
-    role: "Frontend Developer",
-    company: "Digital Innovation Labs",
-    period: "2020 - 2022",
+    role: "Software Engineer",
+    company: "Novaidea",
+    period: "September 2024 - 2024",
     description:
-      "Developed responsive web applications using modern JavaScript frameworks. Collaborated with UX designers to create intuitive user interfaces. Optimized application performance resulting in faster load times.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "GSAP", "Firebase"],
+      "Developed a responsive React frontend compatible with desktop, tablet, and mobile devices, contributing to a consistent user experience. Worked collaboratively within a development team, participating in reviews and meetings to support project progress.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "GSAP"],
   },
   {
-    role: "Junior Software Engineer",
-    company: "CodeBridge Labs",
-    period: "2022 - 2024",
+    role: "Software Engineer Intern",
+    company: "Data4Prime Srl",
+    period: "July 2022 - August 2022",
     description:
-      "Built and maintained internal tools with a full-stack team, integrating REST APIs and improving CI pipelines for safer releases.",
-    technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
-  },
-  {
-    role: "Web Developer Intern",
-    company: "Northwave Digital",
-    period: "2019 - 2020",
-    description:
-      "Supported development of corporate websites and campaign landing pages, maintaining reusable UI components and technical SEO quality.",
-    technologies: ["JavaScript", "HTML", "CSS", "Git"],
+      "Provided technical support by troubleshooting hardware and software issues, configuring workstations, and managing user access across company systems. Maintained documentation of procedures and system configurations to improve operational efficiency and IT infrastructure stability.",
   },
 ];
 
 export default function Experiences() {
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col pb-16">
-      <SectionTitle className="mt-40 mb-10">work Experience</SectionTitle>
+      <ScrollLinkedReveal fromY={24} revealStart={0.08} revealEnd={0.42}>
+        <SectionTitle className="mt-40 mb-10">work Experience</SectionTitle>
+      </ScrollLinkedReveal>
       <div className="flex flex-col gap-16">
         {experiences.map((experience, index) => (
-          <div key={`${experience.company}-${experience.role}`}>
+          <ScrollLinkedReveal
+            key={`${experience.company}-${experience.role}`}
+            fromX={index % 2 === 0 ? -72 : 72}
+            fromY={0}
+            revealEnd={0.2}
+          >
             <ExperienceCard
               role={experience.role}
               company={experience.company}
@@ -48,7 +57,7 @@ export default function Experiences() {
                 aria-hidden="true"
               />
             ) : null}
-          </div>
+          </ScrollLinkedReveal>
         ))}
       </div>
     </section>

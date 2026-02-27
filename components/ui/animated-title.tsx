@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface IAnimatedTitleProps {
@@ -9,34 +9,54 @@ interface IAnimatedTitleProps {
 }
 
 export default function AnimatedTitle({ text, className }: IAnimatedTitleProps) {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setIsVisible(true), 80);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const letters = Array.from(text);
 
   return (
-    <p
+    <motion.p
       aria-label={text}
       className={cn("leading-none font-bold tracking-tight", className)}
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.045,
+            delayChildren: 0.08,
+          },
+        },
+      }}
     >
       <span className="sr-only">{text}</span>
-      {Array.from(text).map((char, index) => (
-        <span
-          key={`${char}-${index}`}
-          aria-hidden="true"
-          className={cn(
-            "inline-block origin-bottom transform-gpu transition duration-500 ease-out",
-            isVisible
-              ? "translate-y-0 scale-y-100 opacity-100"
-              : "translate-y-1 scale-y-50 opacity-0",
-          )}
-          style={{ transitionDelay: `${index * 45}ms` }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </p>
+      {letters.map((char, index) =>
+        char === "\n" ? (
+          <br key={`br-${index}`} aria-hidden="true" />
+        ) : (
+          <motion.span
+            key={`${char}-${index}`}
+            aria-hidden="true"
+            className="inline-block origin-bottom"
+            variants={{
+              hidden: {
+                opacity: 0,
+                y: 6,
+                scaleY: 0.45,
+              },
+              visible: {
+                opacity: 1,
+                y: 0,
+                scaleY: 1,
+                transition: {
+                  duration: 0.42,
+                  ease: [0.2, 0.8, 0.2, 1],
+                },
+              },
+            }}
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        )
+      )}
+    </motion.p>
   );
 }

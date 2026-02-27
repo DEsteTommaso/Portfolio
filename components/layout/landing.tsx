@@ -10,7 +10,7 @@ export default function Landing() {
       <div className="relative z-20 flex max-w-3xl flex-col gap-11">
         <SectionTitle>Software engineer</SectionTitle>
         <AnimatedTitle
-          text="TOMMASO D'ESTE"
+          text={"TOMMASO\nD'ESTE"}
           className="text-6xl md:text-7xl lg:text-8xl"
         />
         <SubTitle className="text-zinc-400">Based in Italy</SubTitle>

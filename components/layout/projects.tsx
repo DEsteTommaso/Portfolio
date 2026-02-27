@@ -58,7 +58,7 @@ const projects = [
 export default function Projects() {
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 pb-24 pt-6">
-      <SectionTitle>Selected Works</SectionTitle>
+      <SectionTitle className="mb-10">Selected Works</SectionTitle>
 
       <div className="flex flex-col gap-30">
         {projects.map((project, index) => {
@@ -85,8 +85,12 @@ export default function Projects() {
                 className={`flex flex-col gap-6 ${isReverse ? "lg:order-1" : "lg:order-2"}`}
               >
                 <Eyebrow>{project.type}</Eyebrow>
-                <CardTitle>{project.title}</CardTitle>
-                <BodyText>{project.description}</BodyText>
+                <CardTitle className="text-2xl md:text-4xl">
+                  {project.title}
+                </CardTitle>
+                <BodyText className="text-base md:text-lg">
+                  {project.description}
+                </BodyText>
 
                 <div className="flex flex-wrap gap-3">
                   {project.tags.map((tag) => (
@@ -94,7 +98,7 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-white/90 md:text-base">
+                <div className="flex items-center gap-6 text-xs font-semibold uppercase tracking-wide text-white/90 md:text-sm">
                   <Link
                     href={project.sourceUrl}
                     target="_blank"

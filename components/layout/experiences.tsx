@@ -1,4 +1,5 @@
 import ExperienceCard from "@/components/ui/experience-card";
+import { SectionTitle } from "@/components/ui/typography";
 
 const experiences = [
   {
@@ -29,20 +30,20 @@ const experiences = [
 
 export default function Experiences() {
   return (
-    <section className="mx-auto flex w-full max-w-[1400px] flex-col gap-6 pb-16">
-      <h2 className="text-lg font-semibold tracking-[0.16em] text-white/85">
-        EXPERIENCE
-      </h2>
-      {experiences.map((experience) => (
-        <ExperienceCard
-          key={`${experience.company}-${experience.role}`}
-          role={experience.role}
-          company={experience.company}
-          period={experience.period}
-          description={experience.description}
-          technologies={experience.technologies}
-        />
-      ))}
+    <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 pb-16">
+      <SectionTitle>Experience</SectionTitle>
+      <div className="flex flex-col gap-30">
+        {experiences.map((experience) => (
+          <ExperienceCard
+            key={`${experience.company}-${experience.role}`}
+            role={experience.role}
+            company={experience.company}
+            period={experience.period}
+            description={experience.description}
+            technologies={experience.technologies}
+          />
+        ))}
+      </div>
     </section>
   );
 }

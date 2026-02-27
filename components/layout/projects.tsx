@@ -3,6 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
+import TechPill from "@/components/ui/tech-pill";
+import {
+  BodyText,
+  CardTitle,
+  Eyebrow,
+  SectionTitle,
+} from "@/components/ui/typography";
 
 const projects = [
   {
@@ -50,64 +57,66 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="mx-auto flex w-full max-w-[1400px] flex-col gap-12 pb-24 pt-6">
-      <h2 className="text-lg font-semibold tracking-[0.16em] text-white/85">PROJECTS</h2>
+    <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 pb-24 pt-6">
+      <SectionTitle>Selected Works</SectionTitle>
 
-      {projects.map((project, index) => {
-        const isReverse = index % 2 === 1;
+      <div className="flex flex-col gap-30">
+        {projects.map((project, index) => {
+          const isReverse = index % 2 === 1;
 
-        return (
-          <article key={project.title} className="grid items-center gap-8 lg:grid-cols-2">
-            <div className={isReverse ? "lg:order-2" : "lg:order-1"}>
-              <div className="relative h-[260px] w-full overflow-hidden border border-white/15 bg-white/5 sm:h-[340px] lg:h-[380px]">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+          return (
+            <article
+              key={project.title}
+              className="grid items-center gap-8 lg:grid-cols-2"
+            >
+              <div className={isReverse ? "lg:order-2" : "lg:order-1"}>
+                <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/15 bg-white/5 sm:h-80 lg:h-96">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className={`flex flex-col gap-6 ${isReverse ? "lg:order-1" : "lg:order-2"}`}>
-              <p className="text-sm uppercase tracking-[0.16em] text-white/45">{project.type}</p>
-              <h3 className="text-4xl font-semibold leading-tight md:text-6xl">{project.title}</h3>
-              <p className="max-w-2xl text-xl leading-relaxed text-white/65">{project.description}</p>
+              <div
+                className={`flex flex-col gap-6 ${isReverse ? "lg:order-1" : "lg:order-2"}`}
+              >
+                <Eyebrow>{project.type}</Eyebrow>
+                <CardTitle>{project.title}</CardTitle>
+                <BodyText>{project.description}</BodyText>
 
-              <div className="flex flex-wrap gap-3">
-                {project.tags.map((tag) => (
-                  <span
-                    key={`${project.title}-${tag}`}
-                    className="border border-white/20 px-4 py-2 text-sm uppercase tracking-[0.12em] text-white/80"
+                <div className="flex flex-wrap gap-3">
+                  {project.tags.map((tag) => (
+                    <TechPill key={`${project.title}-${tag}`} label={tag} />
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-white/90 md:text-base">
+                  <Link
+                    href={project.sourceUrl}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 text-white/90 transition hover:text-white"
                   >
-                    {tag}
-                  </span>
-                ))}
+                    <Github size={18} />
+                    Source
+                  </Link>
+                  <Link
+                    href={project.caseStudyUrl}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 text-white/90 transition hover:text-white"
+                  >
+                    <ExternalLink size={18} />
+                    Case Study
+                  </Link>
+                </div>
               </div>
-
-              <div className="flex items-center gap-6 text-lg font-semibold uppercase tracking-[0.12em]">
-                <Link
-                  href={project.sourceUrl}
-                  target="_blank"
-                  className="inline-flex items-center gap-2 text-white/90 transition hover:text-white"
-                >
-                  <Github size={18} />
-                  Source
-                </Link>
-                <Link
-                  href={project.caseStudyUrl}
-                  target="_blank"
-                  className="inline-flex items-center gap-2 text-white/90 transition hover:text-white"
-                >
-                  <ExternalLink size={18} />
-                  Case Study
-                </Link>
-              </div>
-            </div>
-          </article>
-        );
-      })}
+            </article>
+          );
+        })}
+      </div>
     </section>
   );
 }

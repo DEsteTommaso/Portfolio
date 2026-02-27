@@ -1,4 +1,5 @@
 import TechPill from "@/components/ui/tech-pill";
+import { BodyText, CardTitle, MetaText, SubTitle } from "@/components/ui/typography";
 
 interface IExperienceCardProps {
   role: string;
@@ -16,19 +17,15 @@ export default function ExperienceCard({
   technologies,
 }: IExperienceCardProps) {
   return (
-    <article className="flex w-full flex-col gap-8 rounded-2xl border border-white/15 bg-[#060606] px-6 py-8 md:px-10 md:py-10">
+    <article className="flex w-full flex-col gap-8 rounded-2xl border border-white/15 bg-zinc-950 px-6 py-8 md:px-10 md:py-10">
       <div className="flex items-start justify-between gap-6">
         <div className="flex flex-col gap-2">
-          <h3 className="text-3xl font-semibold leading-tight text-white md:text-5xl">
-            {role}
-          </h3>
-          <p className="text-2xl font-medium text-white/65">{company}</p>
+          <CardTitle>{role}</CardTitle>
+          <SubTitle>{company}</SubTitle>
         </div>
-        <p className="pt-1 text-xl font-semibold text-white/45">{period}</p>
+        <MetaText className="pt-1">{period}</MetaText>
       </div>
-      <p className="max-w-6xl text-xl leading-relaxed text-white/70">
-        {description}
-      </p>
+      <BodyText>{description}</BodyText>
       <div className="flex flex-wrap gap-3">
         {technologies.map((technology) => (
           <TechPill key={`${company}-${technology}`} label={technology} />

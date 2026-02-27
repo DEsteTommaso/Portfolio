@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight, Github, Linkedin } from "lucide-react";
 import {
@@ -7,9 +9,11 @@ import {
 } from "@/components/ui/typography";
 
 export default function Contact() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <section
-      className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 border-t border-white/10 py-16 md:py-24 lg:grid-cols-2 lg:gap-16"
+      className="mx-auto grid w-full max-w-7xl scroll-mt-24 grid-cols-1 gap-12 border-t border-white/10 py-16 md:py-24 lg:grid-cols-2 lg:gap-16"
       id="contact"
     >
       <div className="flex flex-col justify-center gap-10">
@@ -46,7 +50,7 @@ export default function Contact() {
             <Linkedin size={32} />
           </Link>
         </div>
-        <Eyebrow>© 2026 Tommaso D&apos;Este</Eyebrow>
+        <Eyebrow>© {currentYear} Tommaso D&apos;Este</Eyebrow>
         <Eyebrow>Based in Italy · Available worldwide</Eyebrow>
       </div>
     </section>

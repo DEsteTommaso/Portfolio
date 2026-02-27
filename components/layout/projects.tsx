@@ -67,7 +67,10 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 pb-24 pt-6">
+    <section
+      id="projects"
+      className="mx-auto flex w-full max-w-7xl scroll-mt-24 flex-col gap-8 pb-24 pt-6"
+    >
       <ScrollLinkedReveal fromY={24} revealStart={0.08} revealEnd={0.42}>
         <SectionTitle className="mt-40 mb-10">Selected Works</SectionTitle>
       </ScrollLinkedReveal>

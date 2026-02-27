@@ -32,7 +32,10 @@ const experiences: ExperienceItem[] = [
 
 export default function Experiences() {
   return (
-    <section className="mx-auto flex w-full max-w-7xl flex-col pb-16">
+    <section
+      id="experience"
+      className="mx-auto flex w-full max-w-7xl scroll-mt-24 flex-col pb-16"
+    >
       <ScrollLinkedReveal fromY={24} revealStart={0.08} revealEnd={0.42}>
         <SectionTitle className="mt-40 mb-10">work Experience</SectionTitle>
       </ScrollLinkedReveal>

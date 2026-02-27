@@ -7,7 +7,7 @@ import Contact from "@/components/layout/contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full px-5 md:px-10 lg:px-16 xl:px-24">
+    <main id="top" className="min-h-screen w-full px-5 md:px-10 lg:px-16 xl:px-24">
       <Header />
       <Landing />
       <Experiences />

@@ -4,6 +4,8 @@ import {
 } from "@/components/ui/typography";
 import AnimatedTitle from "@/components/ui/animated-title";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Landing() {
   return (
@@ -27,18 +29,18 @@ export default function Landing() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 1.58, ease: "easeOut" }}
         >
-          <button
-            className="border border-transparent bg-zinc-100 px-7 py-3 text-base font-semibold uppercase tracking-wide text-zinc-900"
-            type="button"
+          <Link
+            href="#projects"
+            className="border border-transparent bg-zinc-100 px-7 py-3 text-base font-semibold uppercase tracking-wide text-zinc-900 transition duration-200 hover:-translate-y-0.5 hover:bg-white"
           >
             View Projects
-          </button>
-          <button
-            className="border-0 border-b border-white/45 bg-transparent px-0 py-4 text-base font-semibold uppercase tracking-wide"
-            type="button"
+          </Link>
+          <Link
+            href="#contact"
+            className="border-0 border-b border-white/45 bg-transparent px-0 py-4 text-base font-semibold uppercase tracking-wide transition duration-200 hover:-translate-y-0.5 hover:border-white hover:text-white"
           >
             Get in Touch
-          </button>
+          </Link>
         </motion.div>
       </div>
       <motion.div
@@ -48,15 +50,17 @@ export default function Landing() {
         transition={{ duration: 0.8, delay: 1.58, ease: "easeOut" }}
         aria-hidden="true"
       >
-        <div
-          className="h-full w-full opacity-20 md:opacity-80"
-          style={{
-            backgroundImage:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.8) 100%), url('/images/projects/portrait.png')",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
-        />
+        <div className="relative h-full w-full opacity-20 md:opacity-80">
+          <Image
+            src="/images/projects/portrait.png"
+            alt=""
+            fill
+            aria-hidden="true"
+            className="object-contain object-right xl:object-cover xl:object-center"
+            sizes="(max-width: 768px) 100vw, 42vw"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-[88%] bg-gradient-to-b from-transparent via-black/70 to-black" />
+        </div>
       </motion.div>
     </section>
   );

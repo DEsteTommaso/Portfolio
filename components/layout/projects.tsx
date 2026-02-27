@@ -33,7 +33,7 @@ const projects = [
     tags: ["Unity", "C#", "Firebase"],
     image: "/images/projects/little-heroes.png",
     sourceUrl: "https://github.com/DEsteTommaso/Idle",
-    caseStudyUrl: "https://github.com/DEsteTommaso/Idle",
+    caseStudyUrl: "",
   },
   {
     type: "Portfolio",

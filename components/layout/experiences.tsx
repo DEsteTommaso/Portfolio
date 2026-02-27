@@ -16,7 +16,7 @@ const experiences: ExperienceItem[] = [
   {
     role: "Software Engineer",
     company: "Novaidea",
-    period: "September 2024 - 2024",
+    period: "September 2024 - December 2024",
     description:
       "Developed a responsive React frontend compatible with desktop, tablet, and mobile devices, contributing to a consistent user experience. Worked collaboratively within a development team, participating in reviews and meetings to support project progress.",
     technologies: ["React", "TypeScript", "Tailwind CSS", "GSAP"],

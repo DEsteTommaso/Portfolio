@@ -10,7 +10,7 @@ const projects = [
     description:
       "A 2D tycoon game featuring resource management, base building, and character progression in a vibrant pixel-art world.",
     tags: ["GSAP", "React", "Game Engine"],
-    image: "/images/carousel/ss0.png",
+    image: "/images/feature.png",
     sourceUrl: "https://github.com/DEsteTommaso/Idle",
     caseStudyUrl: "https://github.com/DEsteTommaso/Idle",
   },
@@ -41,7 +41,7 @@ const projects = [
     description:
       "Personal website focused on visual storytelling, motion-driven sections, and a clean system for showcasing products and experience.",
     tags: ["Next.js", "Tailwind", "Framer Motion"],
-    image: "/images/carousel/ss0.png",
+    image: "/images/projects/little-heroes.png",
     sourceUrl: "https://github.com/DEsteTommaso/Portfolio",
     caseStudyUrl: "https://tommasodeste.it",
   },

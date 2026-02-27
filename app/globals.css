@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
+  --background: #000100;
   --foreground: #f3f3f3;
   --muted: #8b8b8b;
   --landing-image: url("/images/carousel/ss0.png");

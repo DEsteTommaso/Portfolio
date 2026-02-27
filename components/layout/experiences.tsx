@@ -29,7 +29,7 @@ const experiences = [
 
 export default function Experiences() {
   return (
-    <section className="content-wrap flex w-full flex-col gap-6 pb-16">
+    <section className="mx-auto flex w-full max-w-[1400px] flex-col gap-6 pb-16">
       <h2 className="text-lg font-semibold tracking-[0.16em] text-white/85">
         EXPERIENCE
       </h2>

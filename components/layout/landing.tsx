@@ -50,7 +50,7 @@ export default function Landing() {
         transition={{ duration: 0.8, delay: 1.58, ease: "easeOut" }}
         aria-hidden="true"
       >
-        <div className="relative h-full w-full opacity-20 md:opacity-80">
+        <div className="relative h-full w-full opacity-55 md:opacity-80">
           <Image
             src="/images/projects/portrait.png"
             alt=""
@@ -59,7 +59,7 @@ export default function Landing() {
             className="object-contain object-right xl:object-cover xl:object-center"
             sizes="(max-width: 768px) 100vw, 42vw"
           />
-          <div className="absolute inset-x-0 bottom-0 h-[88%] bg-gradient-to-b from-transparent via-black/70 to-black" />
+          <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-b from-transparent via-black/35 to-black/85 md:h-[88%] md:via-black/70 md:to-black" />
         </div>
       </motion.div>
     </section>

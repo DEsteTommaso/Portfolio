@@ -21,8 +21,8 @@ export default function AnimatedTitle({ text, className }: IAnimatedTitleProps) 
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: 0.045,
-            delayChildren: 0.08,
+            staggerChildren: 0.06,
+            delayChildren: 0.12,
           },
         },
       }}
@@ -47,8 +47,8 @@ export default function AnimatedTitle({ text, className }: IAnimatedTitleProps) 
                 y: 0,
                 scaleY: 1,
                 transition: {
-                  duration: 0.42,
-                  ease: [0.2, 0.8, 0.2, 1],
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1],
                 },
               },
             }}

@@ -3,6 +3,7 @@ import {
   SubTitle,
 } from "@/components/ui/typography";
 import AnimatedTitle from "@/components/ui/animated-title";
+import { motion } from "framer-motion";
 
 export default function Landing() {
   return (
@@ -13,8 +14,19 @@ export default function Landing() {
           text={"TOMMASO\nD'ESTE"}
           className="text-6xl md:text-7xl lg:text-8xl"
         />
-        <SubTitle className="text-zinc-400">Based in Italy</SubTitle>
-        <div className="flex flex-wrap items-center gap-5">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 1.4, ease: "easeOut" }}
+        >
+          <SubTitle className="text-zinc-400">Based in Italy</SubTitle>
+        </motion.div>
+        <motion.div
+          className="flex flex-wrap items-center gap-5"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 1.58, ease: "easeOut" }}
+        >
           <button
             className="border border-transparent bg-zinc-100 px-7 py-3 text-base font-semibold uppercase tracking-wide text-zinc-900"
             type="button"
@@ -27,18 +39,25 @@ export default function Landing() {
           >
             Get in Touch
           </button>
-        </div>
+        </motion.div>
       </div>
-      <div
-        className="absolute top-0 right-0 z-0 h-full w-full opacity-20 md:w-1/2 md:opacity-80 lg:w-5/12"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.8) 100%), url('/images/projects/portrait.png')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
+      <motion.div
+        className="absolute top-0 right-0 z-0 h-full w-full md:w-1/2 lg:w-5/12"
+        initial={{ opacity: 0, scale: 1.04, y: 14 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.58, ease: "easeOut" }}
         aria-hidden="true"
-      />
+      >
+        <div
+          className="h-full w-full opacity-20 md:opacity-80"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.8) 100%), url('/images/projects/portrait.png')",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        />
+      </motion.div>
     </section>
   );
 }

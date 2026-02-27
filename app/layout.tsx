@@ -53,6 +53,11 @@ export default function RootLayout({
   return (
     <html lang="it">
       <head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="59d67c1b-e6ae-4d78-bc2b-423479306646"
+        ></script>
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta

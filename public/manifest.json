@@ -1,11 +1,12 @@
 {
-  "name": "Tommaso D'Este - Software Engineer Portfolio",
-  "short_name": "TD Portfolio",
-  "description": "Portfolio di Tommaso D'Este - Software Engineer specializzato in sviluppo web full-stack",
+  "name": "deste.",
+  "short_name": "deste.",
+  "description": "Tommaso D'Este sviluppa app e siti, e li racconta sui social.",
+  "lang": "it",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#eeece6",
+  "theme_color": "#eeece6",
   "icons": [
     {
       "src": "/icon.svg",
@@ -13,9 +14,14 @@
       "type": "image/svg+xml"
     },
     {
-      "src": "/apple-icon.svg", 
-      "sizes": "180x180",
-      "type": "image/svg+xml"
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

@@ -1,40 +1,34 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Schibsted_Grotesk } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-schibsted",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const description =
+  "Tommaso D'Este sviluppa app e siti, e li racconta sui social. Barks, Calendario Rifiuti e gli altri progetti, con i link per scaricarli.";
 
 export const metadata: Metadata = {
-  title: "Tommaso D'Este | Software Engineer",
-  description:
-    "Portfolio di Tommaso D'Este - Software Engineer specializzato in sviluppo web full-stack con React, Next.js, Node.js e tecnologie moderne.",
-  keywords: [
-    "Tommaso D'Este",
-    "Software Engineer",
-    "Full Stack Developer",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Portfolio",
-  ],
+  metadataBase: new URL("https://tommasodeste.it"),
+  title: {
+    default: "deste.",
+    template: "%s · deste.",
+  },
+  description,
   authors: [{ name: "Tommaso D'Este" }],
   creator: "Tommaso D'Este",
-  publisher: "Tommaso D'Este",
   robots: "index, follow",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Tommaso D'Este | Software Engineer",
-    description:
-      "Portfolio di Tommaso D'Este - Software Engineer specializzato in sviluppo web full-stack",
-    url: "https://tommasodeste.it",
-    siteName: "Tommaso D'Este Portfolio",
+    title: "deste.",
+    description,
+    url: "/",
+    siteName: "deste.",
     locale: "it_IT",
     type: "website",
   },
@@ -45,30 +39,32 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#eeece6",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it">
-      <head>
-        <script
-          defer
+    <html lang="it" className={schibsted.variable}>
+      <body>
+        <a
+          href="#contenuto"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:inline-flex focus:min-h-12 focus:items-center focus:rounded-control focus:bg-ink focus:px-4 focus:text-paper"
+        >
+          Vai al contenuto
+        </a>
+        {children}
+        <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="59d67c1b-e6ae-4d78-bc2b-423479306646"
-        ></script>
-        <meta name="theme-color" content="#000000" />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
+          strategy="afterInteractive"
         />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
       </body>
     </html>
   );

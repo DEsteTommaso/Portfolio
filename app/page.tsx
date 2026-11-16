@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import StoreList from "@/components/store-list";
@@ -33,7 +32,7 @@ export default function Linktree() {
             Ti mostro cosa ho costruito.
           </h1>
 
-          <p className="mt-4 text-[1.0625rem] leading-snug text-ink sm:text-lg lg:mt-5 lg:max-w-[32rem] lg:text-xl">
+          <p className="mt-4 text-[1.0625rem] leading-snug text-ink sm:text-lg lg:mt-5 text-balance lg:max-w-none lg:text-xl">
             Ciao, sono Tommaso. Sviluppo app e le racconto sui social.
           </p>
 
@@ -50,9 +49,9 @@ export default function Linktree() {
           </ul>
 
           <div className="mt-3 lg:mt-6">
-            <Link prefetch={false} href="/studio/" className="btn-primary w-full text-[1.0625rem] sm:w-auto">
-              Un sito o un&apos;app per il tuo progetto <span aria-hidden="true">→</span>
-            </Link>
+            <a href="/studio/" className="btn-primary w-full text-[1.0625rem] sm:w-auto">
+              Un sito o un&apos;app per il tuo progetto <span aria-hidden="true" className="nudge">→</span>
+            </a>
           </div>
         </section>
 
@@ -64,9 +63,9 @@ export default function Linktree() {
             {apps.map((app) => (
               <li key={app.id} className="grid gap-x-8 border-b border-rule py-4 lg:grid-cols-[16rem_minmax(0,1fr)_auto] lg:items-center">
                 <h3 className="text-xl font-bold tracking-[-0.02em]">
-                  <Link prefetch={false} href={`/portfolio/#${app.id}`} className="inline-flex min-h-12 items-center underline decoration-muted decoration-1 underline-offset-[0.25em] hover:decoration-ink hover:decoration-2">
-                    {app.name}
-                  </Link>
+                  <a href={`/portfolio/#${app.id}`} className="inline-flex min-h-12 items-center gap-2 underline decoration-muted decoration-1 underline-offset-[0.25em] hover:decoration-ink hover:decoration-2">
+                    {app.name} <span aria-hidden="true" className="nudge text-muted">→</span>
+                  </a>
                 </h3>
                 <p className="text-muted">{app.tagline}</p>
                 <StoreList stores={app.stores} className="mt-1 lg:mt-0" />
@@ -76,9 +75,9 @@ export default function Linktree() {
         </section>
 
         <p className="mt-6">
-          <Link prefetch={false} href="/portfolio/" className="link inline-flex min-h-12 items-center text-lg font-medium">
-            Portfolio e esperienza <span aria-hidden="true">&nbsp;→</span>
-          </Link>
+          <a href="/portfolio/" className="link inline-flex min-h-12 items-center text-lg font-medium">
+            Portfolio e esperienza <span aria-hidden="true" className="nudge">&nbsp;→</span>
+          </a>
         </p>
       </main>
       <SiteFooter narrow />

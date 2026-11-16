@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import Shot from "@/components/shot";
@@ -70,11 +69,11 @@ export default function Studio() {
           </h1>
           <div className="mt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
             <a href={`mailto:${EMAIL}`} className="btn-primary w-full sm:w-auto">
-              Scrivimi <span aria-hidden="true">→</span>
+              Scrivimi <span aria-hidden="true" className="nudge">→</span>
             </a>
-            <Link prefetch={false} href="/portfolio/" className="link inline-flex min-h-12 items-center justify-center font-medium sm:justify-start">
+            <a href="/portfolio/" className="link inline-flex min-h-12 items-center justify-center font-medium sm:justify-start">
               Guarda cosa ho costruito
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -105,9 +104,9 @@ export default function Studio() {
               <p className="text-xl font-bold">Barks</p>
               <p className="mt-1 max-w-[60ch] text-muted">
                 L&apos;app per trovare aree cani, servizi e luoghi pet-friendly vicino a te.{" "}
-                <Link prefetch={false} href="/portfolio/#barks" className="link inline-flex min-h-12 items-center">
+                <a href="/portfolio/#barks" className="link inline-flex min-h-12 items-center">
                   Scheda nel portfolio
-                </Link>
+                </a>
               </p>
               <dl className="mt-6 border-t border-rule">
                 {explained.map((e) => (
@@ -147,7 +146,7 @@ export default function Studio() {
             .
           </p>
           <a href={`mailto:${EMAIL}`} className="btn-primary mt-6 w-full sm:w-auto">
-            Scrivi una email <span aria-hidden="true">→</span>
+            Scrivi una email <span aria-hidden="true" className="nudge">→</span>
           </a>
         </section>
       </main>

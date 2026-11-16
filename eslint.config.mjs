@@ -12,6 +12,11 @@ const compat = new FlatCompat({
 const eslintConfig = [
   { ignores: [".next/**", "out/**", "node_modules/**", "next-env.d.ts"] },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    // I link interni sono <a> normali: la transizione tra pagine (View Transitions
+    // cross-document) parte solo con una navigazione vera, non con quella client di <Link>.
+    rules: { "@next/next/no-html-link-for-pages": "off" },
+  },
 ];
 
 export default eslintConfig;
